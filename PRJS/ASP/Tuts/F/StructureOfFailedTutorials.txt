@@ -1,0 +1,13 @@
+Each folder denotes the name of a tutorial project.
+Inside each folder should be exactly 2 sub-folders:
+
+Named:
+1: "Failed"
+2: "Solution"
+
+The idea:
+After failing hard at getting a tutorial to work, create a directory for it
+here and put the code in the Failed folder. Then at some time try to clone
+the project into the "solution" folder and fix it.
+
+Could make for excellent debugging excercises.

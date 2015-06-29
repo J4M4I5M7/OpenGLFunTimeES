@@ -1,0 +1,13 @@
+
+F is for "Fail"
+These are projects I did that failed to run or compile for some reason.
+
+P is for "Pass"
+These are projects I did that I was able to get up and running without
+any trouble.
+
+
+Failed projects always stay in failed folder.
+If you have a solution to a failed project, it
+also goes in the F (Fail) folder. So we can keep
+a record of common mistakes and their solutions.

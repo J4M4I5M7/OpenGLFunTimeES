@@ -1,0 +1,4 @@
+
+Blog: Projects done from someone's blog.
+YouTube: Projects done off of youtube.
+TutSite: Projects done off of an educational website. Such as LearnOpenGLES.com

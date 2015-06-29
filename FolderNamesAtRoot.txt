@@ -1,0 +1,6 @@
+
+PRJS == Projects.
+Originally I was using more descriptive names.
+But had "too long of file name" error when copying over android projects.
+This is a bit more convoluted. But will keep folders like this documenting
+what the short folder names stand for.

@@ -1,0 +1,7 @@
+
+
+Tuts (Tutorials): Where tutorial code I have done is.
+
+UnSorted: Where android studio projects that have not yet been put in
+the proper folder belong. Or if you just don't know where it should go,
+put it in unsorted.

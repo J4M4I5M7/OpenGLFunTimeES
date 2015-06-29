@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>
+<html class="ie ie6 lte9 lte8 lte7" lang="en-US">
+<![endif]-->
+<!--[if IE 7]>
+<html class="ie ie7 lte9 lte8 lte7" lang="en-US">
+<![endif]-->
+<!--[if IE 8]>
+<html class="ie ie8 lte9 lte8" lang="en-US">
+<![endif]-->
+<!--[if IE 9]>
+<html class="ie ie9" lang="en-US">
+<![endif]-->
+<!--[if gt IE 9]>
+<html lang="en-US"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en-US"><!--<![endif]--><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="initial-scale=1.0,maximum-scale=3.0,width=device-width">
+
+	<title>Android Programming Blog | A real Open GL ES 2.0 2D tutorial part 1</title>
+
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+	<link rel="pingback" href="http://androidblog.reindustries.com/xmlrpc.php">
+
+	<!-- IE6-8 support of HTML5 elements -->
+	<!--[if lt IE 9]>
+	<script src="http://androidblog.reindustries.com/wp-content/themes/neuro/inc/js/html5.js" type="text/javascript"></script>
+	<![endif]-->
+
+	<link rel="alternate" type="application/rss+xml" title="Android Programming Blog » Feed" href="http://androidblog.reindustries.com/feed/">
+<link rel="alternate" type="application/rss+xml" title="Android Programming Blog » Comments Feed" href="http://androidblog.reindustries.com/comments/feed/">
+<link rel="alternate" type="application/rss+xml" title="Android Programming Blog » A real Open GL ES 2.0 2D tutorial part 1 Comments Feed" href="http://androidblog.reindustries.com/a-real-open-gl-es-2-0-2d-tutorial-part-1/feed/">
+<link rel="stylesheet" id="bootstrap-style-css" href="Android%20Programming%20Blog%20_%20A%20real%20Open%20GL%20ES%202.0%202D%20tutorial%20part%201_files/bootstrap.css" type="text/css" media="all">
+<link rel="stylesheet" id="bootstrap-responsive-style-css" href="Android%20Programming%20Blog%20_%20A%20real%20Open%20GL%20ES%202.0%202D%20tutorial%20part%201_files/bootstrap-responsive.css" type="text/css" media="all">
+<link rel="stylesheet" id="cyberchimps_responsive-css" href="Android%20Programming%20Blog%20_%20A%20real%20Open%20GL%20ES%202.0%202D%20tutorial%20part%201_files/cyberchimps-responsive.css" type="text/css" media="all">
+<link rel="stylesheet" id="core-style-css" href="Android%20Programming%20Blog%20_%20A%20real%20Open%20GL%20ES%202.0%202D%20tutorial%20part%201_files/core.css" type="text/css" media="all">
+<link rel="stylesheet" id="style-css" href="Android%20Programming%20Blog%20_%20A%20real%20Open%20GL%20ES%202.0%202D%20tutorial%20part%201_files/style.css" type="text/css" media="all">
+<link rel="stylesheet" id="elements_style-css" href="Android%20Programming%20Blog%20_%20A%20real%20Open%20GL%20ES%202.0%202D%20tutorial%20part%201_files/elements.css" type="text/css" media="all">
+<script async="" src="Android%20Programming%20Blog%20_%20A%20real%20Open%20GL%20ES%202.0%202D%20tutorial%20part%201_files/cbgapi.loaded_2"></script><script async="" src="Android%20Programming%20Blog%20_%20A%20real%20Open%20GL%20ES%202.0%202D%20tutorial%20part%201_files/cbgapi.loaded_1"></script><script async="" src="Android%20Programming%20Blog%20_%20A%20real%20Open%20GL%20ES%202.0%202D%20tutorial%20part%201_files/cbgapi.loaded_0"></script><script type="text/javascript" src="Android%20Programming%20Blog%20_%20A%20real%20Open%20GL%20ES%202.0%202D%20tutorial%20part%201_files/jquery_007.js"></script>
+<script type="text/javascript" src="Android%20Programming%20Blog%20_%20A%20real%20Open%20GL%20ES%202.0%202D%20tutorial%20part%201_files/jquery-migrate.js"></script>
+<script type="text/javascript" src="Android%20Programming%20Blog%20_%20A%20real%20Open%20GL%20ES%202.0%202D%20tutorial%20part%201_files/anti-spam.js"></script>
+<script type="text/javascript" src="Android%20Programming%20Blog%20_%20A%20real%20Open%20GL%20ES%202.0%202D%20tutorial%20part%201_files/jquery_003.js"></script>
+<script type="text/javascript" src="Android%20Programming%20Blog%20_%20A%20real%20Open%20GL%20ES%202.0%202D%20tutorial%20part%201_files/jquery_006.js"></script>
+<script type="text/javascript" src="Android%20Programming%20Blog%20_%20A%20real%20Open%20GL%20ES%202.0%202D%20tutorial%20part%201_files/jquery_002.js"></script>
+<script type="text/javascript" src="Android%20Programming%20Blog%20_%20A%20real%20Open%20GL%20ES%202.0%202D%20tutorial%20part%201_files/swipe-call.js"></script>
+<script type="text/javascript" src="Android%20Programming%20Blog%20_%20A%20real%20Open%20GL%20ES%202.0%202D%20tutorial%20part%201_files/core.js"></script>
+<script type="text/javascript" src="Android%20Programming%20Blog%20_%20A%20real%20Open%20GL%20ES%202.0%202D%20tutorial%20part%201_files/comment-reply.js"></script>
+<script type="text/javascript" src="Android%20Programming%20Blog%20_%20A%20real%20Open%20GL%20ES%202.0%202D%20tutorial%20part%201_files/elements.js"></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://androidblog.reindustries.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://androidblog.reindustries.com/wp-includes/wlwmanifest.xml"> 
+<meta name="generator" content="WordPress 3.6">
+<link rel="canonical" href="http://androidblog.reindustries.com/a-real-open-gl-es-2-0-2d-tutorial-part-1/">
+<link rel="shortlink" href="http://androidblog.reindustries.com/?p=31">
+<style type="text/css">.ie8 .container {max-width: 1020px;width:auto;}</style>	<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+
+	<style type="text/css">
+		body {
+				}
+	</style>
+	
+<link href="Android%20Programming%20Blog%20_%20A%20real%20Open%20GL%20ES%202.0%202D%20tutorial%20part%201_files/shCore.css" type="text/css" rel="stylesheet"><link href="Android%20Programming%20Blog%20_%20A%20real%20Open%20GL%20ES%202.0%202D%20tutorial%20part%201_files/shThemeDefault.css" type="text/css" rel="stylesheet"><style type="text/css" id="syntaxhighlighteranchor"></style>
+
+	<style type="text/css" media="all">
+				body {
+		 font-size : 14px;
+		 font-family : "Open Sans", Helvetica, Arial, "Lucida Grande", sans-serif;
+		 font-weight : normal;
+				}
+
+										.container {
+		 max-width : 1020px;
+				}
+
+			</style>
+	<script async="" src="Android%20Programming%20Blog%20_%20A%20real%20Open%20GL%20ES%202.0%202D%20tutorial%20part%201_files/adsbygoogle.js"></script><script pagespeed_no_defer="" data-pso-version="20150624_220904">window.dynamicgoogletags={config:[]};dynamicgoogletags.config=["ca-pub-7396093554829178",[[[["DIV",,"container",[]],["10px","10px",1],3,,"1050290444",0],[["DIV",,"sidebar",[]],["10px","10px",1],3,,"2071842048",0],[["ARTICLE",0,,[],1],["10px","10px",0],0,,"3548575246",0]]],[[[],[],[]]],"WordPressSinglePost","8816379640",,0.01,1.0,[0,1209600000],0.01,0];(function(){var h,aa=function(a){var b=typeof a;if("object"==b)if(a){if(a instanceof Array)return"array";if(a instanceof Object)return b;var c=Object.prototype.toString.call(a);if("[object Window]"==c)return"object";if("[object Array]"==c||"number"==typeof a.length&&"undefined"!=typeof a.splice&&"undefined"!=typeof a.propertyIsEnumerable&&!a.propertyIsEnumerable("splice"))return"array";if("[object Function]"==c||"undefined"!=typeof a.call&&"undefined"!=typeof a.propertyIsEnumerable&&!a.propertyIsEnumerable("call"))return"function"}else return"null";
+else if("function"==b&&"undefined"==typeof a.call)return"object";return b},l=function(a){return"number"==typeof a},m=function(a,b){function c(){}c.prototype=b.prototype;a.ta=b.prototype;a.prototype=new c;a.prototype.constructor=a;a.ra=function(a,c,f){for(var g=Array(arguments.length-2),k=2;k<arguments.length;k++)g[k-2]=arguments[k];return b.prototype[c].apply(a,g)}};var p=function(a){return-1!=ba.indexOf(a)};var ca=function(a){var b={},c;for(c in a)b[c]=a[c];return b};var r=function(){},t=function(a,b,c){a.c=null;b||(b=[]);a.sa=void 0;a.S=-1;a.f=b;a:{if(a.f.length){b=a.f.length-1;var d=a.f[b];if(d&&"object"==typeof d&&"array"!=aa(d)){a.U=b-a.S;a.H=d;break a}}a.U=Number.MAX_VALUE}if(c)for(b=0;b<c.length;b++)d=c[b],d<a.U?(d+=a.S,a.f[d]=a.f[d]||da):a.H[d]=a.H[d]||da},da=Object.freeze?Object.freeze([]):[],u=function(a,b){if(b<a.U){var c=b+a.S,d=a.f[c];return d===da?a.f[c]=[]:d}d=a.H[b];return d===da?a.H[b]=[]:d},v=function(a,b,c){b<a.U?a.f[b+a.S]=c:a.H[b]=c},A=function(a,
+b,c){a.c||(a.c={});if(!a.c[c]){var d=u(a,c);d&&(a.c[c]=new b(d))}return a.c[c]},B=function(a,b,c){a.c||(a.c={});if(!a.c[c]){for(var d=u(a,c),e=[],f=0;f<d.length;f++)e[f]=new b(d[f]);a.c[c]=e}b=a.c[c];b==da&&(b=a.c[c]=[]);return b},ea=function(a,b,c){a.c||(a.c={});var d=c?c.f:c;a.c[b]=c;v(a,b,d)};r.prototype.toString=function(){return this.f.toString()};
+var C=function(a){return new a.constructor(fa(a.f))},fa=function(a){var b;if("array"==aa(a)){for(var c=Array(a.length),d=0;d<a.length;d++)null!=(b=a[d])&&(c[d]="object"==typeof b?fa(b):b);return c}c={};for(d in a)null!=(b=a[d])&&(c[d]="object"==typeof b?fa(b):b);return c};var D=function(a){t(this,a,ga)};m(D,r);var ga=[4];D.prototype.g=function(){return C(this)};var ha=function(a){t(this,a,null)};m(ha,r);ha.prototype.g=function(){return C(this)};var E=function(a){t(this,a,null)};m(E,r);E.prototype.g=function(){return C(this)};E.prototype.C=function(){return u(this,1)};E.prototype.setPosition=function(a){v(this,1,a)};var F=function(a){t(this,a,null)};m(F,r);F.prototype.g=function(){return C(this)};F.prototype.C=function(){return u(this,3)};F.prototype.setPosition=function(a){v(this,3,a)};var ja=function(a){t(this,a,ia)};m(ja,r);var ia=[1];ja.prototype.g=function(){return C(this)};ja.prototype.j=function(){return B(this,F,1)};var G=function(a){t(this,a,ka)};m(G,r);var ka=[2];G.prototype.g=function(){return C(this)};G.prototype.ba=function(){return u(this,3)};var la=function(a){t(this,a,null)};m(la,r);
+la.prototype.g=function(){return C(this)};var H=function(a){t(this,a,ma)};m(H,r);var ma=[1,2,3];H.prototype.g=function(){return C(this)};H.prototype.j=function(){return B(this,F,2)};var na=function(a){return A(a,D,4)},pa=function(a){t(this,a,oa)};m(pa,r);var oa=[3];h=pa.prototype;h.g=function(){return C(this)};h.o=function(){return u(this,1)};h.B=function(){return A(this,ja,2)};h.J=function(){return u(this,4)};h.ba=function(){return u(this,5)};h.I=function(){return A(this,qa,9)};
+var qa=function(a){t(this,a,null)};m(qa,r);qa.prototype.g=function(){return C(this)};var ra=function(a,b){var c=new F,d=a.g();void 0!==b.m?-1==b.m?(v(d,2,b.i),v(d,5,-1),c.setPosition(3)):0==b.m?(v(d,2,b.i),v(d,5,0),c.setPosition(0)):(v(d,2,b.i),v(d,5,b.m-1),c.setPosition(3)):-1==b.i?(v(d,2,-1),c.setPosition(3)):0==b.i?(v(d,2,0),c.setPosition(0)):(v(d,2,b.i-1),c.setPosition(3));ea(c,1,d);return c},wa=function(a,b){var c=b||document,d=null,e=u(a,3);if(e)if(d=c.getElementById(e))d=[d];else return[];if(e=u(a,1))if(d){for(var f=[],g=0;g<d.length;++g)d[g].tagName&&d[g].tagName.toUpperCase()==
+e.toUpperCase()&&f.push(d[g]);d=f}else{d=c.getElementsByTagName(e);e=[];for(f=0;f<d.length;++f)e.push(d[f]);d=e}if((e=u(a,4))&&0<e.length)if(d)for(c=d,d=[],f=0;f<c.length;++f)sa(c[f],e)&&d.push(c[f]);else{if(!c.body)return[];d=ua(e,c.body)}c=u(a,2);if(l(c)&&d)if(0>c&&(c+=d.length),d.length>c)d=[d[c]];else return[];c=u(a,5);if(l(c)&&d){e=[];for(f=0;f<d.length;f++)g=va(d[f]),0>c&&(c+=g.length),0<=c&&c<g.length&&e.push(g[c]);d=e}c=u(a,6);if(void 0!==c&&d)switch(c){case 0:return d.slice(1);case 1:return d.slice(0,
+d.length-1);case 2:return d.slice(1,d.length-1)}return d?d:[]},xa=function(a){return"INS"==a.tagName&&sa(a,["adsbygoogle-placeholder"])},va=function(a){var b=[];a=a.getElementsByTagName("p");for(var c=0;c<a.length;++c)100<=ya(a[c])&&b.push(a[c]);return b},ya=function(a){if(3==a.nodeType)return a.length;if(1!=a.nodeType||"SCRIPT"==a.tagName)return 0;for(var b=0,c=0;c<a.childNodes.length;++c)b+=ya(a.childNodes[c]);return b},ua=function(a,b){if(b.getElementsByClassName){for(var c=b.getElementsByClassName(a.join(" ")),
+d=[],e=0;e<c.length;++e)d.push(c[e]);return d}c=[];sa(b,a)&&c.push(b);for(e=0;e<b.childNodes.length;++e)1==b.childNodes[e].nodeType&&(c=c.concat(ua(a,b.childNodes[e])));return c},sa=function(a,b){for(var c=a.className?a.className.split(/\s+/):[],d={},e=0;e<c.length;++e)d[c[e]]=!0;for(e=0;e<b.length;++e)if(!d[b[e]])return!1;return!0};var ba;a:{var za=this.navigator;if(za){var Aa=za.userAgent;if(Aa){ba=Aa;break a}}ba=""};var Ba=function(a,b,c){a.addEventListener?a.addEventListener(b,c,!1):a.attachEvent&&a.attachEvent("on"+b,c)};var Ca=function(a,b,c){a.google_image_requests||(a.google_image_requests=[]);var d=a.document.createElement("img");if(c){var e=function(a){c(a);a=e;d.removeEventListener?d.removeEventListener("load",a,!1):d.detachEvent&&d.detachEvent("onload",a);a=e;d.removeEventListener?d.removeEventListener("error",a,!1):d.detachEvent&&d.detachEvent("onerror",a)};Ba(d,"load",e);Ba(d,"error",e)}d.src=b;a.google_image_requests.push(d)},Da=function(a){try{-1==a.indexOf("")&&(a="\n"+a);for(var b;a!=b;)b=a,a=a.replace(/((https?:\/..*\/)[^\/:]*:\d+(?:.|\n)*)\2/,
+"$1");return a.replace(/\n */g,"\n")}catch(c){return""}};var Ea=window;var Fa=function(a,b){for(var c in a)Object.prototype.hasOwnProperty.call(a,c)&&b.call(null,a[c],c,a)},Ga=function(a,b){var c=a.length;if(0==c)return 0;for(var d=b||305419896,e=0;e<c;e++)d^=(d<<5)+(d>>2)+a.charCodeAt(e)&4294967295;return 0<d?d:4294967296+d},Ha=/(^| )adsbygoogle($| )/;var Ia=function(a,b,c){this.$=a;this.oa=b;this.na=c};Ia.prototype.I=function(){return this.na||new qa};var I=function(a){return a.dynamicgoogletags=a.dynamicgoogletags||{}};var J=function(a){a=a.document;return("CSS1Compat"==a.compatMode?a.documentElement:a.body)||{}};var Ja=function(a){return!!a.nextSibling||!!a.parentNode&&Ja(a.parentNode)},Ka=function(a,b){var c=A(b,D,1);if(!c)return null;c=wa(c,a);return 0<c.length?c[0]:null},La=function(a,b){var c=L(a.document,b,!0);return l(c)&&!(c<=J(a).clientHeight)},L=function(a,b,c){if(!c||!l(u(b,8)))if(c=Ka(a,b)){var d=A(b,ha,2);a=a.createElement("div");a.className="googlepublisherpluginad";var e=a.style;e.textAlign="center";e.width="100%";e.height="0px";e.clear=d&&u(d,3)?"both":"none";Ma(b.C(),c,a);c=a.getBoundingClientRect().top;
+a.parentNode.removeChild(a);v(b,8,c)}return u(b,8)},Qa=function(a,b,c){switch(b){case 0:return!!Na(a,Pa(c));case 3:return!!Na(a,c);case 1:return!1;case 2:return b=c.lastChild,!!Na(a,b?1==b.nodeType?b:Pa(b):null);default:return!1}},Na=function(a,b){if(!b)return!1;var c;c=a.getComputedStyle?a.getComputedStyle(b,null):b.currentStyle;if(!c)return!1;c=c.cssFloat||c.styleFloat;return"left"==c||"right"==c},Ma=function(a,b,c){switch(a){case 0:b.parentNode&&b.parentNode.insertBefore(c,b);break;case 3:if(a=
+b.parentNode){var d=b.nextSibling;if(d&&d.parentNode!=a)for(;d&&8==d.nodeType;)d=d.nextSibling;a.insertBefore(c,d)}break;case 1:b.insertBefore(c,b.firstChild);break;case 2:b.appendChild(c)}xa(b)&&(b.style.display="block")},Ra=function(a){return a.adsbygoogle=a.adsbygoogle||[]},Sa=function(a){switch(a){case 0:return"auto";case 1:return"horizontal";case 2:return"vertical";case 3:return"rectangle";default:return"auto"}},Pa=function(a){for(a=a.previousSibling;a&&1!=a.nodeType;)a=a.previousSibling;return a?
+a:null};var Ta=function(a){this.h=a;this.ma=[]};Ta.prototype.b=function(){return 0<B(this.h,H,3).length?B(this.h,H,3)[0]:null};var Ua=function(a,b){for(var c=0;c<b.length;++c)a.ma.push(b[c])};var Va=[{id:17415653,da:null},{id:17415654,da:10}],Wa=[{id:17415650,fa:!1,ia:!1},{id:17415651,fa:!0,ia:!1},{id:17415652,fa:!0,ia:!0}],Ya=function(a){var b=Xa(window.document.location.hash,Va);if(b)a=b;else a:{if(!(1E-4>Math.random())&&(b=Math.random(),b<(a||0))){try{var c=new Uint16Array(1);window.crypto.getRandomValues(c);b=c[0]/65536}catch(d){b=Math.random()}a=Va[Math.floor(b*Va.length)];break a}a=null}return a},Xa=function(a,b){for(var c=Za(a,"pso_expt"),d=0;c&&d<b.length;d++){var e=b[d];if(e.id==
+c)return e}return null},Za=function(a,b){var c=/^#([^=]*)=(\d+)$/.exec(a);return c&&3==c.length&&c[1]==b?+c[2]:null},M=function(a,b){for(var c=a.google_ad_modifications=a.google_ad_modifications||{},c=c.loeids=c.loeids||[],d=0;d<b.length;d++)c.push(""+b[d])},ab=function(a,b){var c=a+$a,d=Ga(c);return((d%512*2+1)*b+Ga(c,d)%1024)%1024},bb=function(a,b,c){var d=a.length;c-=0;return 0>c||c>=b*d?null:a[c%d]};var db=function(a){try{if(.1>Math.random()){var b="/pagead/gen_204?id=ladd_evt"+cb(a),c="http"+("http:"==Ea.location.protocol?"":"s")+"://pagead2.googlesyndication.com"+b,c=c.substring(0,2E3);Ca(Ea,c,void 0)}}catch(d){}},cb=function(a){var b="";Fa(a,function(a,d){if(0===a||a)b+="&"+d+"="+("function"==typeof encodeURIComponent?encodeURIComponent(a):escape(a))});return b};var jb=function(a){var b=eb(a);if(!b||120>b)return fb(a),null;b=gb;if(a.document.body){var c=[{element:a.document.body,depth:0}],d=eb(a);if(d){for(var e=[],f=0;0<c.length&&2>e.length;){var g=c.pop();if(g.depth>f&&2<=e.length)break;for(var f=d,k=b,n=g,q=c,w=e,y=n.element.children,x=null,S=null,ta=0;ta<y.length;ta++){var T=y[ta],Oa=hb(T),z;if(z=Oa){var K=Oa;z=f;"INS"==T.tagName&&Ha.test(T.className)||x&&"INS"==x.tagName&&Ha.test(x.className)||x&&/^H[1-6]$/.test(x.tagName)||S&&("absolute"==S.position||
+"fixed"==S.position)?z=!1:(K=ib(K),(null==K||null==z?0:K>=.93*z&&K<=1.01*z)?(K=ib(S),z=(null==K||null==z?0:K>=.93*z&&K<=1.01*z)?!0:!1):z=!1)}if(z&&(!k||k(T))&&(w.push(T),2<=w.length))break;q.push({element:T,depth:n.depth+1});x=T;S=Oa}f=g.depth}b=e}else b=[]}else b=[];b=b[1]||b[0]||null;return b&&b.parentNode?b:(fb(a),null)},gb=function(a){var b=kb(a);if(!b)return!1;b=b.getBoundingClientRect().bottom;return null!==b&&!(b<=J(a.ownerDocument.defaultView).clientHeight)},eb=function(a){var b=hb(a.document.getElementsByTagName("body")[0]);
+return b?ib(b):J(a).clientWidth||null},ib=function(a){return a&&(a=a.width)&&/px$/i.test(a)?parseInt(a,10):null},hb=function(a){return window.getComputedStyle&&a?window.getComputedStyle(a):null},kb=function(a){if(void 0!=a.previousElementSibling)return a.previousElementSibling;for(;a&&1!=a.nodeType;)a=a.previousSibling;return a},fb=function(a){var b=J(a).offsetHeight,c=eb(a);db({ok:0,ph:b,pw:c,url:lb(a)})},lb=function(a){return a.location.href&&a.location.href.substring?a.location.href.substring(0,
+200):""};var N=function(a){this.a=a;this.M=[];this.ja=0;this.G=[];this.P=[];this.ka=this.aa=null};N.prototype.T=function(){return this.G};var O=function(a,b){for(var c=0;c<a.G.length;++c)if(a.G[c]==b)return;a.G.push(b)};N.prototype.ca=function(){return this.P};var P=function(a,b){for(var c=0;c<a.P.length;++c)if(a.P[c]==b)return;a.P.push(b)};N.prototype.K=function(){return 0!=this.G.length||0!=this.P.length};
+var Q=function(a,b,c){var d=Ka(a.a.document,b);if(!d)return 2;var e=b.C(),f;if(f=A(b,D,1))f=A(b,D,1),f=void 0!==u(f,2);return f&&Qa(a.a,e,d)?7:2!=e||c||Ja(d)?(c=1==e||2==e?d:d.parentNode)&&0>=c.offsetWidth&&!xa(c)?3:mb(a,b,d):4};N.prototype.A=function(){return this.M.length};
+var mb=function(a,b,c){if(null!=a.ka&&!La(a.a,b))return 4;if(u(b,7))return P(a,8),6;var d;a:if(u(b,5))d=u(b,5);else{if(d=R(a).b())if(d=u(d,3),a.ja<d.length){d=d[a.ja++];break a}O(a,4);d=null}if(null==d)return 1;v(b,7,!0);var e=a.a.document,f=a.o(),g=d,k=u(b,6),n=A(b,ha,2),q=e.createElement("div");q.className="googlepublisherpluginad";var w=q.style;w.textAlign="center";w.width="100%";w.height="auto";w.clear=n&&u(n,3)?"both":"none";e=e.createElement("ins");e.className="adsbygoogle";e.setAttribute("data-ad-client",
+f);e.setAttribute("data-ad-slot",g);e.setAttribute("data-ad-format",Sa(k));e.setAttribute("data-tag-origin","pso");f=e.style;f.display="block";f.margin="auto";f.backgroundColor="transparent";n&&(u(n,1)&&(f.marginTop=u(n,1)||""),u(n,2)&&(f.marginBottom=u(n,2)||""));q.appendChild(e);Ma(b.C(),c,q);try{c=[];var y=a.J();y&&c.push(y);for(var x=R(a).ma,y=0;y<x.length;++y)c.push(x[y]);var S=a.a,x={};c&&(x.params={},x.params.google_ad_channel=c.join("+"));Ra(S).push(x)}catch(ta){return u(b,5)!=d&&a.ja--,v(b,
+7,!1),P(a,6),q.parentNode&&q.parentNode.removeChild(q),5}a.M.push(q);return 0},nb=function(a,b){for(var c=Number.POSITIVE_INFINITY,d=0;d<a.M.length;++d)var e=a.M[d].getBoundingClientRect().top,f=a.M[d].getBoundingClientRect().bottom,c=Math.min(c,b<e?e-b:f<b?b-f:0);return c},ob=function(a,b){for(var c=[],d=0;d<b.length;++d)U(a,b[d])&&c.push(b[d]);return c},U=function(a,b){return La(a.a,b)},R=function(a){a=I(a.a).ps||null;if(!a)throw Error("No placementState");return a},V=function(a,b){var c=R(a).h;
+if(!c||!c.o())return O(a,5),!1;c=B(c,H,3)[0];return c?u(c,3).length<b?(O(a,4),O(a,5),!1):!0:(O(a,5),!1)};N.prototype.o=function(){return R(this).h.o()||""};N.prototype.J=function(){return R(this).h.J()||void 0};N.prototype.B=function(){return R(this).h.B()||new ja};N.prototype.b=function(){var a=R(this).b();if(!a)throw Error("No mConfig");return a};var pb={m:void 0,i:-1},W=function(a){N.call(this,a);this.F=this.D=this.Y=!1};m(W,N);W.prototype.apply=function(a){if(V(this,this.X()?3:2)){var b=this.b().j();this.Y||(this.Y=qb(this,b,2,!!a));this.D||(this.D=qb(this,b,3,!!a));if(a&&(this.D||(P(this,7),this.D=rb(this,b)),this.X())){if(!this.F){a=na(this.b());var c;if(c=a&&U(this,ra(a,pb)))a=ra(a,pb),c=0==Q(this,a,!0);this.F=c?!0:!1}this.F||(this.F=rb(this,b))}}};W.prototype.l=function(){return this.Y&&this.D&&(!this.X()||this.F)};
+var qb=function(a,b,c,d){for(var e=0;e<b.length;e++){var f=b[e],g=A(f,E,4);if(g&&g.C()==c&&0==Q(a,f,d))return!0}return!1},rb=function(a,b){for(var c=0;c<b.length;c++){var d=b[c];if(U(a,d)&&!u(d,7)&&0==Q(a,d,!0))return!0}return!1};W.prototype.X=function(){return!0};var sb=function(a){W.call(this,a)};m(sb,W);sb.prototype.X=function(){return!1};var tb=function(a){N.call(this,a);this.N=null};m(tb,N);tb.prototype.apply=function(a){if(a&&null===this.N){a:if(V(this,3)){jb(this.a)?M(this.a,[12239701,12239703]):M(this.a,[12239704]);a=ob(this,this.b().j());for(var b=0;3>b;++b)if(!ub(this,a)){P(this,2);a=!1;break a}a=!this.K()}else O(this,5),a=!1;this.N=a}};tb.prototype.l=function(){return!!this.N};var ub=function(a,b){for(;0<b.length;){var c=b.shift(),d=L(a.a.document,c,!1);if(l(d)&&!u(c,7)&&100<=nb(a,d)&&0==Q(a,c,!0))return!0}return!1};var vb=function(a){tb.call(this,a)};m(vb,tb);
+vb.prototype.apply=function(a){if(a&&null===this.N){a:if(V(this,3)){a=!1;var b=jb(this.a);if(b){M(this.a,[12239701,12239702]);a=this.a;if(b.parentNode){var c=a.document.createElement("div"),d=c.style,e;e:{if((e=kb(b))&&(e=hb(e))&&("left"==e.cssFloat||"right"==e.cssFloat)){e="inline-block";break e}e="block"}d.display=e;c.style.height="0";c.style.overflow="hidden";b.parentNode.insertBefore(c,b);b=c}else b=null;b?(c=b.getBoundingClientRect().top+(void 0!==a.pageYOffset?a.pageYOffset:(a.document.documentElement||
+a.document.body.parentNode||a.document.body).scrollTop),d=J(a).offsetHeight,e=eb(a),db({ok:1,y:c,ph:d,pw:e,url:lb(a)})):fb(a);b?(a=new ha,v(a,1,"10px"),v(a,2,"10px"),c=new F,v(c,6,0),ea(c,2,a),c.setPosition(1),0!=mb(this,c,b)?(P(this,5),a=!1):a=!0):(P(this,4),a=!1)}else M(this.a,[12239704]);b=ob(this,this.b().j());for(a=a?1:0;3>a;++a)if(!ub(this,b)){P(this,2);a=!1;break a}a=!this.K()}else a=!1;this.N=a}};var wb=function(a){N.call(this,a);this.L=null};m(wb,N);var xb=["WordPressHome","WordPressFront","WordPressCategory","WordPressArchive"],yb={i:0,m:0},zb={i:0,m:void 0};
+wb.prototype.apply=function(a){if(V(this,3)){if(null==this.L){var b;a:{for(b=0;b<xb.length;++b)if(xb[b]==this.J()){b=!0;break a}b=!1}this.s=(this.L=b)?ca(zb):ca(yb)}if(b=na(this.b())){for(;3>this.A()&&Ab(this,b);)if(a&&!U(this,ra(b,this.s)))Bb(this,1);else{var c=a,d=ra(b,this.s);0==Q(this,d,c)?Bb(this,2):Bb(this,1)}a&&3>this.A()&&P(this,1)}else O(this,5)}};wb.prototype.l=function(){return 0<this.A()};
+var Ab=function(a,b){var c=wa(b);if(0==c.length)return!1;if(a.L)return a.s.i<=c.length;c=va(c[0]);return 0==c.length?!1:a.s.m<=c.length},Bb=function(a,b){a.L?a.s.i+=b:a.s.m+=b};var Cb=function(a,b){N.call(this,a);this.Z=this.O=!1;this.R=[];this.ga=5;b&&b.la&&(this.ga=b.la)};m(Cb,N);Cb.prototype.apply=function(a){if(V(this,this.ga)){var b=this.b().j();if(a)Db(this,b);else if(!this.O)for(a=0;a<b.length;++a){var c=b[a],d=A(c,E,4);if(d&&2==d.C()&&(this.O=0==Q(this,c,!1))){Eb(this,0);break}}}};Cb.prototype.l=function(){return this.O||this.Z};
+var Db=function(a,b){if(!a.Z){for(var c=[],d=0;d<b.length;++d){var e=b[d];Fb(a,e)&&c.push(e)}var f=a.a.document;c.sort(function(a,b){var c=L(f,a,!0),d=L(f,b,!0);return c-d});for(var e=a.O?1:0,g=-800,d=0;d<c.length&&e<a.ga;++d){var k=c[d],n=L(f,k,!0);800<=n-g&&Gb(a,n)&&0==Q(a,k,!0)&&(e++,Eb(a,n),g=n)}a.Z=!0}},Gb=function(a,b){var c=Hb(a,b);return 3>a.R[c]},Eb=function(a,b){var c=Hb(a,b);++a.R[c]},Hb=function(a,b){for(var c=Math.floor(b/2400),d=a.R.length;d<=c;++d)a.R.push(0);return c},Fb=function(a,
+b){return U(a,b)&&!u(b,7)},Ib=function(a){Cb.call(this,a,{la:3})};m(Ib,Cb);var Jb=function(a){N.call(this,a)};m(Jb,N);Jb.prototype.apply=function(a){var b;(b=R(this).h)&&b.o()&&b.B()?b=!0:(O(this,5),b=!1);if(b){b=this.B().j();for(var c=0;c<b.length;c++){var d=b[c];u(d,7)||Q(this,d,a)}}};Jb.prototype.l=function(){return(0==this.B().j().length||0<this.A())&&0==this.T().length};var Kb=function(a){N.call(this,a);a=this.B().j();if(V(this,0)){var b;b=this.b();b=u(b,3);b=V(this,a.length)?a.length:b.length;for(var c=0;c<b;++c)v(a[c],5,void 0)}};m(Kb,Jb);var Lb=function(a){N.call(this,a)};m(Lb,N);Lb.prototype.apply=function(){};Lb.prototype.l=function(){var a;a=this.b();a=u(a,6);if(null==a||0==a)return!0;a=new D;v(a,3,"aswift_0_expand");var b=new D;v(b,3,"google_ads_frame1");var c=new D;v(c,4,["adsbygoogle"]);return 0<wa(a).length||0<wa(b).length||0<wa(c).length};var Nb=function(a){N.call(this,a);this.pa=.5*J(a).clientHeight;this.V=[];this.W=[];V(this,0)&&(this.V=this.b().j().slice());for(a=0;3>a;++a)Mb(this,!1)};m(Nb,N);var Mb=function(a,b){for(;0<a.V.length;){var c=a.V.splice(Math.floor(a.V.length*Math.random()),1)[0];if((!b||U(a,c))&&Ob(a,c,b)){a.W.push(c);return}}P(a,2)},Ob=function(a,b,c){b=L(a.a.document,b,!1);return l(b)?a.pa<nb(a,b):!c};
+Nb.prototype.apply=function(a){if(V(this,3)){for(var b=[];0<this.W.length;){var c=this.W.pop();if(Ob(this,c,a))switch(Q(this,c,a)){case 0:case 1:break;case 5:case 2:case 4:a?Mb(this,!0):b.push(c);break;case 3:Mb(this,a);break;default:P(this,3)}else Mb(this,a)}this.W=b}};Nb.prototype.l=function(){return!this.K()};var Pb=function(){},Qb=function(a,b,c){N.call(this,a);this.w=b;this.qa=c;this.ea=!1;this.w.ka=new Pb;Ra(this.a).push({google_ad_client:this.o(),enable_page_level_ads:{google_tag_origin:"pso"},overlays:!1,interstitials:!1})};m(Qb,N);h=Qb.prototype;
+h.apply=function(a){if(void 0!==this.a.google_async_config){var b=this.a.document.body;if(this.qa&&!this.ea&&b){var c=this.a.document,d=this.o(),e=c.createElement("div");e.className="googlepublisherpluginad";e.style.display="block";c=c.createElement("ins");c.className="adsbygoogle";c.setAttribute("data-ad-client",d);c.setAttribute("data-reactive-ad-format","1");c.setAttribute("data-tag-origin","pso");c.style.display="none";e.appendChild(c);Ma(1,b,e);Ra(this.a).push({});this.ea=!0}this.w.apply(a)}};
+h.l=function(){return this.w.l()};h.T=function(){return this.w.T()};h.ca=function(){return this.w.ca()};h.K=function(){return this.w.K()};h.A=function(){return this.w.A()+(this.ea?1:0)};var X={};X[1]=Jb;X[2]=sb;X[3]=W;X[4]=Cb;X[14]=Ib;X[5]=wb;X[7]=Nb;X[8]=Lb;X[9]=tb;X[10]=vb;X[11]=Jb;X[13]=Kb;var Rb=[8,1,4,5],Sb=[1,6,8,11];var Tb=function(a){return 0>a||99<a?null:10>a?"0"+a:""+a};var Ub=function(){this.u=this.v=this.ha=null};var Wb=function(a,b,c,d,e){var f=I(window).ss||null,g=I(window).ps||null,k;g&&(k=g.h);var n;a?(a="pso_success",n=k?u(k,10):.01):(a="pso_failure",n=k?u(k,7):.01);if(null!=n&&!(n<Math.random())){var q="https://pagead2.googlesyndication.com/pagead/gen_204?id="+a;a=function(a,b){null!=b&&(b="function"==typeof encodeURIComponent?encodeURIComponent(b):escape(b),q+="&"+a+"="+b)};a("sv",Vb());g&&k&&(a("wpc",k.o()),a("tn",k.J()),g=g.b(),a("ev",g?u(g,5):null));f&&(a("s",f.v),a("st",f.ha));a("c",b);a("w",0<
+window.innerWidth?window.innerWidth:null);a("h",0<window.innerHeight?window.innerHeight:null);0<c.length&&a("err",c.join());0<d.length&&a("warn",d.join());e&&e.name&&a("excp_n",e.name);e&&e.message&&a("excp_m",e.message.substring(0,512));e&&e.stack&&a("excp_s",Da(e.stack));Ca(window,q)}},Vb=function(){for(var a=document.getElementsByTagName("script"),b=0;b<a.length;++b){var c=a[b].getAttribute("data-pso-version");if(c)return c}return""};var Xb=null,Yb=null,dc=function(){var a=u(Zb.h,8),b=Y;(a=Ya(a))&&a.id&&M(window,[a.id]);var c=I(b);a&&a.da?(c.update=function(){},$b(a.da,b)):c.update=ac;bc(cc,b)},fc=function(){var a=Y;I(a).update=function(){};$b(10,a,!0);bc(ec,a)},bc=function(a,b){var c=ec;b.addEventListener?(b.addEventListener("DOMContentLoaded",c,!1),b.addEventListener("load",a,!1)):b.attachEvent&&b.attachEvent("onload",a)},$b=function(a,b,c){Yb=!!c;c=c?gc:ac;hc(b,c);Xb=b.setInterval(c,a)},hc=function(a,b){var c=Ra(a);if(!c.loaded){var d=
+c.shift;c.shift=function(){c.shift=d;b();return d.call(c)}}},ic=function(a,b){(!Yb||b)&&l(Xb)&&a.clearInterval&&(a.clearInterval(Xb),Xb=null)},ec=function(){ic(window);ac(!0)},cc=function(){try{ec();var a=I(window).ss||null;if(a&&a.u){var b=a.u,c=b.l(),d=b.T(),e=b.ca(),f=b.aa,g=b.A();c||0!=g||d.push(6);c&&0==d.length&&null===f?Wb(!0,g,[],e,null):Wb(!1,g,d,e,f)}else Wb(!1,0,[2],[],null)}catch(k){Wb(!1,null,[1],[],k)}I(window).loaded=!0},gc=function(a){a=a||window;switch(a.document.readyState){case "complete":void 0!==
+a.google_async_config&&(ic(a,!0),cc());break;case "interactive":break;default:ac()}},ac=function(a){var b=I(window).ss||null;if(b&&b.u){b=b.u;try{b.apply(a)}catch(c){O(b,1),null===b.aa&&(b.aa=c)}}};var nc=function(){var a=Y,b=Zb,c=jc,d=b.b();if(!d)return kc(1);var e;a:{e=B(d,G,1);for(var f=0;f<e.length;++f){for(var g=!0,k=0;k<Sb.length;++k)u(e[f],4)==Sb[k]&&(g=!1);if(g){e=[];0==d.j().length&&e.push("PsoInvalidVariant");0==u(d,3).length&&e.push("PsoNoAdSlotCodes");break a}}e=[]}if(0<e.length)return Ua(b,e),kc(1);a:{e=B(d,G,1);f=c.$;if(l(f))for(g=0;g<e.length;g++)if(k=e[g],X[u(k,4)])for(var n=B(k,la,2),q=0;q<n.length;q++){var w=n[q],y=u(w,1),w=u(w,2);if(l(y)&&l(w)&&f>=y&&f<=w){e=k;break a}}e=
+null}if(!e)a:{e=B(d,G,1);f={};for(g=0;g<e.length;g++)f[u(e[g],4)]=e[g];for(g=0;g<Rb.length;g++)if(f[Rb[g]]){e=f[Rb[g]].g();v(e,6,3);break a}e=null}if(!e)return kc(1);2==u(e,6)&&(null!=e.ba()&&Ua(b,[e.ba()]),f=u(e,1),null!=f&&M(a,[f]));if(!(u(b.h,11)||2!=u(e,6)&&1!=u(e,6))){f=c.I();if(f=u(f,2))f=Date.now?Date.now():+new Date,c=c.I(),c=u(c,2),f=f<c;if(f){b=e;c=B(d,G,1);f={};d=[];for(g=0;g<c.length;g++)k=lc(c[g]),null==k||f[k]||(f[k]=!0,d.push(k));c=lc(b);if(null!=c){b=[];c=Tb(c);f=!1;if(c)for(g=0;g<
+d.length;g++)k=Tb(d[g]),c==k&&(f=!0),k&&b.push(+("950"+c+k));f||(b=[]);null!=mc(a)&&M(a,b)}}else Ua(b,["pso-ama-exd"])}a=new Ub;a.ha=u(e,5);a.v=u(e,4);return a},kc=function(a){var b=new Ub;b.v=a;return b},lc=function(a){var b;switch(u(a,6)){case 1:b=u(a,4);break;case 2:b=u(a,7)}return null!=b?b:null},mc=function(a){try{return a.localStorage||null}catch(b){return null}};try{a:{var Y=window,oc,pc=I(Y).config;oc=pc?new pa(pc):null;if(!oc)throw Error("No config");var Zb=new Ta(oc),qc=Zb;I(Y).ps=qc;var Z,jc;if(p("iPad")||p("Android")&&!p("Mobile")||p("Silk")||!(p("iPod")||p("iPhone")||p("Android")||p("IEMobile")))Z=kc(1);else{var rc;if((rc=Za(Y.document.location.hash,"pso_strategy"))&&X[rc])Z=kc(rc);else{var sc=Y,tc=Zb.h.I(),uc=null,vc=!1,wc=mc(sc);wc&&(uc=parseInt(wc.getItem("PSO_EXP0"),10));if(null==uc||isNaN(uc))uc=Math.floor(1E3*Math.random()),wc&&(wc.setItem("PSO_EXP0",
+uc.toString()),vc=!0);jc=new Ia(uc,vc,tc);Z=nc()}if(1==Z.ha&&8!=Z.v&&1!=Z.v&&13!=Z.v&&11!=Z.v){var xc=Y,yc=xc.google_ad_modifications=xc.google_ad_modifications||{};yc.remove_ads_by_default=!0;yc.ad_whitelist=[{ad_tag_origin:"pso"}];yc.ad_blacklist=[];yc.space_collapsing="slot"}}if(!Z)throw Error("No strategyState created!");var zc=Z;I(Y).ss=zc;var Ac=Y,Bc=Z,Cc=Bc.v;if(l(Cc)){var Dc=X[Cc];Cc&&Dc&&(Bc.u=new Dc(Ac))}if(jc){var $a=Y.location.hostname,Ec;var Fc=jc,Gc=Xa(Y.document.location.hash,Wa);if(Gc)Ec=
+Gc;else{var Hc=ab("rflw0",Fc.$),Ic=Fc.I(),Jc=u(Ic,1)||0;Ec=bb(Wa,Jc,Hc)}var Kc=Y,Lc=jc.$,Mc=[],Nc=bb([17415655,17415656],1,ab("unif1",Lc));null===Nc||Mc.push(Nc);var Oc=bb([17415657,17415658],10,ab("unif2",Lc));null===Oc||Mc.push(Oc);var Pc=bb([17415659,17415660],100,ab("unif3",Lc));null===Pc||Mc.push(Pc);0<Mc.length&&M(Kc,Mc);if(Ec&&Z.u&&(M(Y,[Ec.id]),Ec.fa&&jc.oa)){Z.u=new Qb(Y,Z.u,Ec.ia);fc();break a}}dc()}}catch(Qc){Wb(!1,null,[],[],Qc)};})();
+</script><style type="text/css">.fb_hidden{position:absolute;top:-10000px;z-index:10001}.fb_invisible{display:none}.fb_reset{background:none;border:0;border-spacing:0;color:#000;cursor:auto;direction:ltr;font-family:"lucida grande", tahoma, verdana, arial, sans-serif;font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal}.fb_reset>div{overflow:hidden}.fb_link img{border:none}
+.fb_dialog{background:rgba(82, 82, 82, .7);position:absolute;top:-10000px;z-index:10001}.fb_reset .fb_dialog_legacy{overflow:visible}.fb_dialog_advanced{padding:10px;-moz-border-radius:8px;-webkit-border-radius:8px;border-radius:8px}.fb_dialog_content{background:#fff;color:#333}.fb_dialog_close_icon{background:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 0 transparent;_background-image:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif);cursor:pointer;display:block;height:15px;position:absolute;right:18px;top:17px;width:15px}.fb_dialog_mobile .fb_dialog_close_icon{top:5px;left:5px;right:auto}.fb_dialog_padding{background-color:transparent;position:absolute;width:1px;z-index:-1}.fb_dialog_close_icon:hover{background:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -15px transparent;_background-image:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif)}.fb_dialog_close_icon:active{background:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -30px transparent;_background-image:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif)}.fb_dialog_loader{background-color:#f6f7f8;border:1px solid #606060;font-size:24px;padding:20px}.fb_dialog_top_left,.fb_dialog_top_right,.fb_dialog_bottom_left,.fb_dialog_bottom_right{height:10px;width:10px;overflow:hidden;position:absolute}.fb_dialog_top_left{background:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 0;left:-10px;top:-10px}.fb_dialog_top_right{background:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -10px;right:-10px;top:-10px}.fb_dialog_bottom_left{background:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -20px;bottom:-10px;left:-10px}.fb_dialog_bottom_right{background:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -30px;right:-10px;bottom:-10px}.fb_dialog_vert_left,.fb_dialog_vert_right,.fb_dialog_horiz_top,.fb_dialog_horiz_bottom{position:absolute;background:#525252;filter:alpha(opacity=70);opacity:.7}.fb_dialog_vert_left,.fb_dialog_vert_right{width:10px;height:100%}.fb_dialog_vert_left{margin-left:-10px}.fb_dialog_vert_right{right:0;margin-right:-10px}.fb_dialog_horiz_top,.fb_dialog_horiz_bottom{width:100%;height:10px}.fb_dialog_horiz_top{margin-top:-10px}.fb_dialog_horiz_bottom{bottom:0;margin-bottom:-10px}.fb_dialog_iframe{line-height:0}.fb_dialog_content .dialog_title{background:#6d84b4;border:1px solid #3a5795;color:#fff;font-size:14px;font-weight:bold;margin:0}.fb_dialog_content .dialog_title>span{background:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/yd/r/Cou7n-nqK52.gif) no-repeat 5px 50%;float:left;padding:5px 0 7px 26px}body.fb_hidden{-webkit-transform:none;height:100%;margin:0;overflow:visible;position:absolute;top:-10000px;left:0;width:100%}.fb_dialog.fb_dialog_mobile.loading{background:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/ya/r/3rhSv5V8j3o.gif) white no-repeat 50% 50%;min-height:100%;min-width:100%;overflow:hidden;position:absolute;top:0;z-index:10001}.fb_dialog.fb_dialog_mobile.loading.centered{max-height:590px;min-height:590px;max-width:500px;min-width:500px}#fb-root #fb_dialog_ipad_overlay{background:rgba(0, 0, 0, .45);position:absolute;left:0;top:0;width:100%;min-height:100%;z-index:10000}#fb-root #fb_dialog_ipad_overlay.hidden{display:none}.fb_dialog.fb_dialog_mobile.loading iframe{visibility:hidden}.fb_dialog_content .dialog_header{-webkit-box-shadow:white 0 1px 1px -1px inset;background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#738ABA), to(#2C4987));border-bottom:1px solid;border-color:#1d4088;color:#fff;font:14px Helvetica, sans-serif;font-weight:bold;text-overflow:ellipsis;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0;vertical-align:middle;white-space:nowrap}.fb_dialog_content .dialog_header table{-webkit-font-smoothing:subpixel-antialiased;height:43px;width:100%}.fb_dialog_content .dialog_header td.header_left{font-size:12px;padding-left:5px;vertical-align:middle;width:60px}.fb_dialog_content .dialog_header td.header_right{font-size:12px;padding-right:5px;vertical-align:middle;width:60px}.fb_dialog_content .touchable_button{background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#4966A6), color-stop(.5, #355492), to(#2A4887));border:1px solid #2f477a;-webkit-background-clip:padding-box;-webkit-border-radius:3px;-webkit-box-shadow:rgba(0, 0, 0, .117188) 0 1px 1px inset, rgba(255, 255, 255, .167969) 0 1px 0;display:inline-block;margin-top:3px;max-width:85px;line-height:18px;padding:4px 12px;position:relative}.fb_dialog_content .dialog_header .touchable_button input{border:none;background:none;color:#fff;font:12px Helvetica, sans-serif;font-weight:bold;margin:2px -12px;padding:2px 6px 3px 6px;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog_content .dialog_header .header_center{color:#fff;font-size:16px;font-weight:bold;line-height:18px;text-align:center;vertical-align:middle}.fb_dialog_content .dialog_content{background:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/y9/r/jKEcVPZFk-2.gif) no-repeat 50% 50%;border:1px solid #555;border-bottom:0;border-top:0;height:150px}.fb_dialog_content .dialog_footer{background:#f6f7f8;border:1px solid #555;border-top-color:#ccc;height:40px}#fb_dialog_loader_close{float:left}.fb_dialog.fb_dialog_mobile .fb_dialog_close_button{text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog.fb_dialog_mobile .fb_dialog_close_icon{visibility:hidden}
+.fb_iframe_widget{display:inline-block;position:relative}.fb_iframe_widget span{display:inline-block;position:relative;text-align:justify}.fb_iframe_widget iframe{position:absolute}.fb_iframe_widget_fluid_desktop,.fb_iframe_widget_fluid_desktop span,.fb_iframe_widget_fluid_desktop iframe{max-width:100%}.fb_iframe_widget_fluid_desktop iframe{min-width:220px;position:relative}.fb_iframe_widget_lift{z-index:1}.fb_hide_iframes iframe{position:relative;left:-10000px}.fb_iframe_widget_loader{position:relative;display:inline-block}.fb_iframe_widget_fluid{display:inline}.fb_iframe_widget_fluid span{width:100%}.fb_iframe_widget_loader iframe{min-height:32px;z-index:2;zoom:1}.fb_iframe_widget_loader .FB_Loader{background:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/y9/r/jKEcVPZFk-2.gif) no-repeat;height:32px;width:32px;margin-left:-16px;position:absolute;left:50%;z-index:4}</style></head>
+<body class="single single-post postid-31 single-format-standard cc-responsive">
+
+
+<!-- ---------------- Menu --------------------- -->
+<div class="container-full-width" id="navigation_menu">
+	<div class="container">
+		<div class="container-fluid">
+			<nav id="navigation" role="navigation">
+				<div class="main-navigation navbar">
+					<div class="navbar-inner">
+						<div class="container">
+
+														<div class="nav-collapse collapse">
+								
+								<ul id="menu-menu" class="nav"><li><a href="http://androidblog.reindustries.com/about/">About</a></li>
+<li><a href="http://androidblog.reindustries.com/tutorials/">Tutorials</a></li>
+</ul>
+								
+															</div>
+						<!-- collapse -->
+
+						<!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+							<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+							</a>
+												</div>
+						<!-- container -->
+					</div>
+					<!-- .navbar-inner .row-fluid -->
+				</div>
+				<!-- main-navigation navbar -->
+			</nav>
+			<!-- #navigation -->
+		</div>
+		<!-- .container-fluid-->
+	</div>
+	<!-- .container -->
+</div>
+<!-- #navigation_menu -->
+
+
+<!-- --------------- Sub Body -------------------- -->
+
+<div class="container-full-width" id="sub_body">
+
+	<!-- ---------------- Header --------------------- -->
+	<div class="container-full-width" id="header_section">
+		<div class="container">
+						<div class="container-fluid">
+					<header id="cc-header" class="row-fluid">
+		<div class="span7">
+					<div id="logo">
+			<a href="http://androidblog.reindustries.com/" title="Android Programming Blog"><img src="Android%20Programming%20Blog%20_%20A%20real%20Open%20GL%20ES%202.0%202D%20tutorial%20part%201_files/LogoConcept_grey_256.png" alt="Android Programming Blog"></a>
+		</div>
+			</div>
+
+		<div id="register" class="span5">
+				<div id="social">
+		<div class="default-icons">
+			<a href="https://twitter.com/ReIndustries" target="_blank" title="Android Programming Blog Twitter" class="symbol twitterbird"></a><a href="https://www.facebook.com/pages/ReIndustries/198858556802011" target="_blank" title="Android Programming Blog Facebook" class="symbol facebook"></a><a href="http://www.linkedin.com/pub/reinier-den-hollander/30/950/a68" target="_blank" title="Android Programming Blog Linkedin" class="symbol linkedin"></a><a href="http://www.youtube.com/channel/UCh2XFrNKw77Gh86y3uwTRfg" target="_blank" title="Android Programming Blog Youtube" class="symbol youtube"></a><a href="mailto:info@reindustries.com" title="Android Programming Blog Email" class="symbol email"></a>		</div>
+	</div>
+
+		</div>
+	</header>
+			</div>
+			<!-- .container-fluid-->
+		</div>
+		<!-- .container -->
+	</div>
+	<!-- #header_section -->
+	<div id="single_page" class="container-full-width">
+
+		<div class="container">
+
+			<div class="container-fluid">
+
+				
+				<div id="container" class="row-fluid">
+
+					
+					<div id="content" class=" span9 content-sidebar-right">
+
+						
+						
+							
+<article id="post-31" class="post-31 post type-post status-publish format-standard hentry category-android category-open_gl_es_2 category-shader">
+
+	<header class="entry-header">
+
+		
+		<h1 class="entry-title">
+							A real Open GL ES 2.0 2D tutorial part 1				
+		</h1>
+					<div class="entry-meta">
+				Posted on <a href="http://androidblog.reindustries.com/a-real-open-gl-es-2-0-2d-tutorial-part-1/" title="15:33" rel="bookmark">
+							<time class="entry-date updated" datetime="2013-08-16T15:33:00+00:00">August 16, 2013</time>
+						</a>				<span class="byline"> by <span class="author vcard">
+								<a class="url fn n" href="http://androidblog.reindustries.com/author/reinier/" title="View all posts by Reinier" rel="author">Reinier</a>
+							</span>
+						</span>			</div><!-- .entry-meta -->
+			</header>
+	<!-- .entry-header -->
+
+	
+		<div class="entry-content">
+						<script><!--
+dynamicgoogletags.update();
+//--></script><div style="width: 508px;" id="fsb-social-bar" class="fsb-social-bar" data-post-id="31" data-socialite="true"><style type="text/css">            #fsb-social-bar { width: 100%; border-bottom: 1px solid #dbdbdb; border-top: 1px solid #dbdbdb; padding: 10px 0; margin: 0px 0 20px 0; float: left; background: #fff; position: relative; clear: both; }            #fsb-social-bar a { border: 0px !important }            #fsb-social-bar.fsb-fixed { position: fixed; top: -2px; z-index: 99999; }            #fsb-social-bar .fsb-title { display: block; float: left; margin: 3px 20px 0 0; font-size: 16px; font-family: Arial, Helvetica, sans-serif; text-decoration: none; color: #333; }            #fsb-social-bar .fsb-share-facebook { width: 120px; float: left; padding: 3px 0 2px; height: 25px; }            #fsb-social-bar .fsb-share-facebook.fsb-hide-count { width: 44px; overflow: hidden; margin-right: 30px; }            #fsb-social-bar .fsb-share-twitter { float: left; width: 135px; padding: 3px 0 2px; height: 25px; }            #fsb-social-bar .fsb-share-twitter.fsb-hide-count { width: 61px; overflow: hidden; margin-right: 30px; }            #fsb-social-bar .fsb-share-google { float: left; width: 105px; padding: 3px 0 2px; height: 25px; }            #fsb-social-bar .fsb-share-google.fsb-hide-count { width: 33px; overflow: hidden; margin-right: 30px; }            #fsb-social-bar .fsb-share-linkedin { float: left; width: 135px; padding: 3px 0 2px; height: 25px; }            #fsb-social-bar .fsb-share-linkedin.fsb-hide-count { width: 61px; overflow: hidden; margin-right: 30px; }            #fsb-social-bar .fsb-share-pinterest { float: left; width: 115px; padding: 3px 0 2px; height: 25px;}            #fsb-social-bar .fsb-share-pinterest.fsb-hide-count { width: 43px; overflow: hidden; margin-right: 30px; }            #fsb-social-bar .socialite { display: block; position: relative; background: url(http://androidblog.reindustries.com/wp-content/plugins/floating-social-bar/images/fsb-sprite.png) no-repeat scroll 0 0; }            #fsb-social-bar .socialite-loaded { background: none !important; }            #fsb-social-bar .fsb-service-title { display: none; }            #fsb-social-bar a { color: #333; text-decoration: none; font-size: 12px; font-family: Arial, Helvetica, sans-serif; }            #fsb-social-bar .fsb-twitter { width: 105px; height: 25px; background-position: -13px -10px; line-height: 25px; vertical-align: middle; }            #fsb-social-bar .fsb-twitter .fsb-count { width: 30px; text-align: center; display: inline-block; margin: 0px 0 0 69px; color: #333; }            #fsb-social-bar .fsb-google { width: 75px; height: 25px; background-position: -136px -10px; line-height: 25px; vertical-align: middle; }            #fsb-social-bar .fsb-google .fsb-count { width: 30px; text-align: center; display: inline-block; margin: 0px 0 0 41px; color: #333; }            #fsb-social-bar .fsb-google .socialite-button { margin: 0 !important; }            #fsb-social-bar .fsb-share-google .socialite-loaded .socialite-button{padding: 2px 0 0}            #fsb-social-bar .fsb-facebook { width: 89px; height: 25px; background-position: -231px -10px; line-height: 25px; vertical-align: middle; }            #fsb-social-bar .fsb-facebook .fsb-count { width: 30px; text-align: center; display: inline-block; margin: 0px 0 0 52px; color: #333; }            #fsb-social-bar .fsb-facebook .socialite-button { margin: 0 !important;}            #fsb-social-bar .fsb-share-facebook .socialite-loaded .socialite-button {padding: 2px 0 0}            #fsb-social-bar .fsb-linkedin { width: 105px; height: 25px; background-position: -347px -10px; line-height: 25px; vertical-align: middle; }            #fsb-social-bar .fsb-linkedin .fsb-count { width: 30px; text-align: center; display: inline-block; margin: 0px 0 0 70px; color: #333; }            #fsb-social-bar .fsb-linkedin .socialite-button { margin: 0 !important; }            #fsb-social-bar .fsb-pinterest { width: 88px; height: 25px; background-position: -484px -10px; line-height: 25px; vertical-align: middle; }            #fsb-social-bar .fsb-pinterest .fsb-count { width: 30px; text-align: center; display: inline-block; margin: 0px 0 0 50px; color: #333; }            #fsb-social-bar .fsb-pinterest .socialite-button { margin: 0 !important; }            .fsb-clear { clear: both; }            .fsb-clear:after { clear:both; content:; display:block; height:0; line-height:0; overflow:auto; visibility:hidden; zoom:1; }            @media (max-width: 768px) { #fsb-social-bar.fsb-fixed { position: relative !important; top: auto !important; } }        </style><div class="fsb-share-facebook"><div class="socialised facebook socialite-loaded"><div class="socialite-button"><iframe src="Android%20Programming%20Blog%20_%20A%20real%20Open%20GL%20ES%202.0%202D%20tutorial%20part%201_files/like.htm" scrolling="no" allowtransparency="true" style="overflow: hidden; border: medium none;" frameborder="0"></iframe></div></div></div><div class="fsb-share-google"><div class="socialised googleplus socialite-loaded"><div style="text-indent: 0px; margin: 0px; padding: 0px; background: transparent none repeat scroll 0% 0%; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 90px; height: 20px;" id="___plusone_0" class="socialite-button"><iframe title="+1" data-gapiattached="true" src="Android%20Programming%20Blog%20_%20A%20real%20Open%20GL%20ES%202.0%202D%20tutorial%20part%201_files/fastbutton.htm" name="I0_1435605370565" id="I0_1435605370565" vspace="0" tabindex="0" style="position: static; top: 0px; width: 90px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 20px;" scrolling="no" marginwidth="0" marginheight="0" hspace="0" frameborder="0" width="100%"></iframe></div></div></div><div class="fsb-share-twitter"><a href="https://twitter.com/share?original_referer=http%3A%2F%2Fandroidblog.reindustries.com%2F&amp;source=tweetbutton&amp;text=A+real+Open+GL+ES+2.0+2D+tutorial+part+1&amp;url=http%3A%2F%2Fandroidblog.reindustries.com%2Fa-real-open-gl-es-2-0-2d-tutorial-part-1%2F&amp;via=ReIndustries" class="socialite twitter fsb-twitter" data-fsb-service="twitter" rel="nofollow" target="_blank" title="7 retweets so far"><span class="fsb-service-title">Twitter</span><span class="fsb-count">7</span></a></div><div class="fsb-share-linkedin fsb-hide-count"><a href="https://www.linkedin.com/cws/share?url=http://androidblog.reindustries.com/a-real-open-gl-es-2-0-2d-tutorial-part-1/" class="socialite linkedin fsb-linkedin" data-fsb-service="linkedin" data-size="medium" data-href="http://androidblog.reindustries.com/a-real-open-gl-es-2-0-2d-tutorial-part-1/" rel="nofollow" target="_blank"><span class="fsb-service-title">LinkedIn</span><span class="fsb-count">0</span></a></div><div class="fsb-share-pinterest fsb-hide-count"><a href="http://pinterest.com/pin/create/button/?url=http://androidblog.reindustries.com/a-real-open-gl-es-2-0-2d-tutorial-part-1/&amp;description=A+real+Open+GL+ES+2.0+2D+tutorial+part+1&amp;media=" class="socialite pinit fsb-pinterest" data-fsb-service="pinterest" target="_blank" rel="nofollow"><span class="fsb-service-title">Pinterest</span><span class="fsb-count">0</span></a></div></div><div class="fsb-clear"></div><p style="text-align: justify;">When
+ we first searched the internet for information about Open GL ES 2 for 
+Android, we found a lot of useful tutorials. The problem we encountered 
+however was that none of the tutorials we found really explained the 2D 
+part of Open GL ES 2. Since we were at first looking for 2D only code, 
+we were a bit disappointed. &nbsp;There are quite a few questions on 
+websites that cover such things but creating a full 2D engine based on 
+separate question is not the way you want to go about it. Therefor we 
+have decided to create a few handy tutorials for 2D only. We hope a lot 
+of beginning coders will find this information useful.</p>
+<p><span id="more-31"></span></p>
+<div>&nbsp;</div>
+<h2>First Activity</h2>
+<div style="text-align: center; width: 100%; height: auto; clear: none;" class="googlepublisherpluginad"><ins style="display: block; margin: 10px auto; background-color: transparent;" data-tag-origin="pso" data-ad-format="auto" data-ad-slot="3548575246" data-ad-client="ca-pub-7396093554829178" class="adsbygoogle"></ins></div><p style="text-align: justify;">The
+ main difference between 2D en 3D is the view and all calculations that 
+are needed to create a 3D environment (and of course the third 
+dimension). Since we do not want any of that (at this moment anyway) we 
+will focus on setting up OpenGL ES 2.0 in 2D mode for android.</p>
+<p>Let’s start with the activity that will spawn our OpenGL environment.</p>
+<div><div id="highlighter_713829" class="syntaxhighlighter  java"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div><div class="line number9 index8 alt2">9</div><div class="line number10 index9 alt1">10</div><div class="line number11 index10 alt2">11</div><div class="line number12 index11 alt1">12</div><div class="line number13 index12 alt2">13</div><div class="line number14 index13 alt1">14</div><div class="line number15 index14 alt2">15</div><div class="line number16 index15 alt1">16</div><div class="line number17 index16 alt2">17</div><div class="line number18 index17 alt1">18</div><div class="line number19 index18 alt2">19</div><div class="line number20 index19 alt1">20</div><div class="line number21 index20 alt2">21</div><div class="line number22 index21 alt1">22</div><div class="line number23 index22 alt2">23</div><div class="line number24 index23 alt1">24</div><div class="line number25 index24 alt2">25</div><div class="line number26 index25 alt1">26</div><div class="line number27 index26 alt2">27</div><div class="line number28 index27 alt1">28</div><div class="line number29 index28 alt2">29</div><div class="line number30 index29 alt1">30</div><div class="line number31 index30 alt2">31</div><div class="line number32 index31 alt1">32</div><div class="line number33 index32 alt2">33</div><div class="line number34 index33 alt1">34</div><div class="line number35 index34 alt2">35</div><div class="line number36 index35 alt1">36</div><div class="line number37 index36 alt2">37</div><div class="line number38 index37 alt1">38</div><div class="line number39 index38 alt2">39</div><div class="line number40 index39 alt1">40</div><div class="line number41 index40 alt2">41</div><div class="line number42 index41 alt1">42</div><div class="line number43 index42 alt2">43</div><div class="line number44 index43 alt1">44</div><div class="line number45 index44 alt2">45</div><div class="line number46 index45 alt1">46</div><div class="line number47 index46 alt2">47</div><div class="line number48 index47 alt1">48</div><div class="line number49 index48 alt2">49</div><div class="line number50 index49 alt1">50</div><div class="line number51 index50 alt2">51</div><div class="line number52 index51 alt1">52</div><div class="line number53 index52 alt2">53</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="java keyword">package</code> <code class="java plain">ri.blog.opengl001;</code></div><div class="line number2 index1 alt1">&nbsp;</div><div class="line number3 index2 alt2"><code class="java keyword">import</code> <code class="java plain">android.opengl.GLSurfaceView;</code></div><div class="line number4 index3 alt1"><code class="java keyword">import</code> <code class="java plain">android.os.Bundle;</code></div><div class="line number5 index4 alt2"><code class="java keyword">import</code> <code class="java plain">android.app.Activity;</code></div><div class="line number6 index5 alt1"><code class="java keyword">import</code> <code class="java plain">android.view.Window;</code></div><div class="line number7 index6 alt2"><code class="java keyword">import</code> <code class="java plain">android.view.WindowManager;</code></div><div class="line number8 index7 alt1"><code class="java keyword">import</code> <code class="java plain">android.widget.RelativeLayout;</code></div><div class="line number9 index8 alt2">&nbsp;</div><div class="line number10 index9 alt1"><code class="java keyword">public</code> <code class="java keyword">class</code> <code class="java plain">MainActivity </code><code class="java keyword">extends</code> <code class="java plain">Activity {</code></div><div class="line number11 index10 alt2">&nbsp;</div><div class="line number12 index11 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java comments">// Our OpenGL Surfaceview</code></div><div class="line number13 index12 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">private</code> <code class="java plain">GLSurfaceView glSurfaceView;</code></div><div class="line number14 index13 alt1">&nbsp;</div><div class="line number15 index14 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java color1">@Override</code></div><div class="line number16 index15 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">protected</code> <code class="java keyword">void</code> <code class="java plain">onCreate(Bundle savedInstanceState) {</code></div><div class="line number17 index16 alt2">&nbsp;</div><div class="line number18 index17 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java comments">// Turn off the window's title bar</code></div><div class="line number19 index18 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">requestWindowFeature(Window.FEATURE_NO_TITLE);</code></div><div class="line number20 index19 alt1">&nbsp;</div><div class="line number21 index20 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java comments">// Super</code></div><div class="line number22 index21 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">super</code><code class="java plain">.onCreate(savedInstanceState);</code></div><div class="line number23 index22 alt2">&nbsp;</div><div class="line number24 index23 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java comments">// Fullscreen mode</code></div><div class="line number25 index24 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);</code></div><div class="line number26 index25 alt1">&nbsp;</div><div class="line number27 index26 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java comments">// We create our Surfaceview for our OpenGL here.</code></div><div class="line number28 index27 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">glSurfaceView = </code><code class="java keyword">new</code> <code class="java plain">GLSurf(</code><code class="java keyword">this</code><code class="java plain">);</code></div><div class="line number29 index28 alt2">&nbsp;</div><div class="line number30 index29 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java comments">// Set our view.</code></div><div class="line number31 index30 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">setContentView(R.layout.activity_main);</code></div><div class="line number32 index31 alt1">&nbsp;</div><div class="line number33 index32 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java comments">// Retrieve our Relative layout from our main layout we just set to our view.</code></div><div class="line number34 index33 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">RelativeLayout layout = (RelativeLayout) findViewById(R.id.gamelayout);</code></div><div class="line number35 index34 alt2">&nbsp;</div><div class="line number36 index35 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java comments">// Attach our surfaceview to our relative layout from our main layout.</code></div><div class="line number37 index36 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">RelativeLayout.LayoutParams glParams = </code><code class="java keyword">new</code> <code class="java plain">RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);</code></div><div class="line number38 index37 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">layout.addView(glSurfaceView, glParams);</code></div><div class="line number39 index38 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">}</code></div><div class="line number40 index39 alt1">&nbsp;</div><div class="line number41 index40 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java color1">@Override</code></div><div class="line number42 index41 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">protected</code> <code class="java keyword">void</code> <code class="java plain">onPause() {</code></div><div class="line number43 index42 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">super</code><code class="java plain">.onPause();</code></div><div class="line number44 index43 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">glSurfaceView.onPause();</code></div><div class="line number45 index44 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">}</code></div><div class="line number46 index45 alt1">&nbsp;</div><div class="line number47 index46 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java color1">@Override</code></div><div class="line number48 index47 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">protected</code> <code class="java keyword">void</code> <code class="java plain">onResume() {</code></div><div class="line number49 index48 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">super</code><code class="java plain">.onResume();</code></div><div class="line number50 index49 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">glSurfaceView.onResume();</code></div><div class="line number51 index50 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">}</code></div><div class="line number52 index51 alt1">&nbsp;</div><div class="line number53 index52 alt2"><code class="java plain">}</code></div></div></td></tr></tbody></table></div></div>
+<p style="text-align: justify;">First we want our app to be full screen 
+so we request Android to not show a title bar(19). We also set the 
+screen to full screen (25). Now that our screen is setup correctly we 
+create our OpenGL surface (28). We create a new instance of a custom 
+made surface view and set it as our content view (31). We have made our 
+own surface view because later on we want to be able to process touch in
+ our own manner and doing this for this tutorial also shows more 
+in-depth information on the various aspects on OpenGL ES 2.0. The last 
+thing we do it look up our RelativeLayout and attach our surface to that
+ surface. This RelativeLayout should be the only thing in the layout for
+ our activity, for completeness:</p>
+<div>&nbsp;</div>
+<div><div id="highlighter_135246" class="syntaxhighlighter  xml"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="xml plain">&lt;?</code><code class="xml keyword">xml</code> <code class="xml color1">version</code><code class="xml plain">=</code><code class="xml string">"1.0"</code> <code class="xml color1">encoding</code><code class="xml plain">=</code><code class="xml string">"utf-8"</code><code class="xml plain">?&gt;</code></div><div class="line number2 index1 alt1"><code class="xml plain">&lt;</code><code class="xml keyword">RelativeLayout</code> <code class="xml color1">xmlns:android</code><code class="xml plain">=</code><code class="xml string">"<a href="http://schemas.android.com/apk/res/android">http://schemas.android.com/apk/res/android</a>"</code></div><div class="line number3 index2 alt2"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml color1">android:id</code><code class="xml plain">=</code><code class="xml string">"@+id/gamelayout"</code></div><div class="line number4 index3 alt1"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml color1">android:layout_width</code><code class="xml plain">=</code><code class="xml string">"fill_parent"</code></div><div class="line number5 index4 alt2"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml color1">android:layout_height</code><code class="xml plain">=</code><code class="xml string">"fill_parent"</code><code class="xml plain">&gt;</code></div><div class="line number6 index5 alt1"><code class="xml plain">&lt;/</code><code class="xml keyword">RelativeLayout</code><code class="xml plain">&gt;</code></div></div></td></tr></tbody></table></div></div>
+<div>&nbsp;</div>
+<p style="text-align: justify;">We have also included the onPause and 
+onResume functions. They do nothing at this moment, but it shows how you
+ should handle this kind of behaviour.</p>
+<div>&nbsp;</div>
+<h2>Custom Surface view</h2>
+<p>Let’s take a look at the code for our custom surface view.</p>
+<div>&nbsp;</div>
+<div><div id="highlighter_451168" class="syntaxhighlighter  java"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div><div class="line number9 index8 alt2">9</div><div class="line number10 index9 alt1">10</div><div class="line number11 index10 alt2">11</div><div class="line number12 index11 alt1">12</div><div class="line number13 index12 alt2">13</div><div class="line number14 index13 alt1">14</div><div class="line number15 index14 alt2">15</div><div class="line number16 index15 alt1">16</div><div class="line number17 index16 alt2">17</div><div class="line number18 index17 alt1">18</div><div class="line number19 index18 alt2">19</div><div class="line number20 index19 alt1">20</div><div class="line number21 index20 alt2">21</div><div class="line number22 index21 alt1">22</div><div class="line number23 index22 alt2">23</div><div class="line number24 index23 alt1">24</div><div class="line number25 index24 alt2">25</div><div class="line number26 index25 alt1">26</div><div class="line number27 index26 alt2">27</div><div class="line number28 index27 alt1">28</div><div class="line number29 index28 alt2">29</div><div class="line number30 index29 alt1">30</div><div class="line number31 index30 alt2">31</div><div class="line number32 index31 alt1">32</div><div class="line number33 index32 alt2">33</div><div class="line number34 index33 alt1">34</div><div class="line number35 index34 alt2">35</div><div class="line number36 index35 alt1">36</div><div class="line number37 index36 alt2">37</div><div class="line number38 index37 alt1">38</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="java keyword">package</code> <code class="java plain">ri.blog.opengl001;</code></div><div class="line number2 index1 alt1">&nbsp;</div><div class="line number3 index2 alt2"><code class="java keyword">import</code> <code class="java plain">android.content.Context;</code></div><div class="line number4 index3 alt1"><code class="java keyword">import</code> <code class="java plain">android.opengl.GLSurfaceView;</code></div><div class="line number5 index4 alt2">&nbsp;</div><div class="line number6 index5 alt1"><code class="java keyword">public</code> <code class="java keyword">class</code> <code class="java plain">GLSurf </code><code class="java keyword">extends</code> <code class="java plain">GLSurfaceView {</code></div><div class="line number7 index6 alt2">&nbsp;</div><div class="line number8 index7 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">private</code> <code class="java keyword">final</code> <code class="java plain">GLRenderer mRenderer;</code></div><div class="line number9 index8 alt2">&nbsp;</div><div class="line number10 index9 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">public</code> <code class="java plain">GLSurf(Context context) {</code></div><div class="line number11 index10 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">super</code><code class="java plain">(context);</code></div><div class="line number12 index11 alt1">&nbsp;</div><div class="line number13 index12 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java comments">// Create an OpenGL ES 2.0 context.</code></div><div class="line number14 index13 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">setEGLContextClientVersion(</code><code class="java value">2</code><code class="java plain">);</code></div><div class="line number15 index14 alt2">&nbsp;</div><div class="line number16 index15 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java comments">// Set the Renderer for drawing on the GLSurfaceView</code></div><div class="line number17 index16 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">mRenderer = </code><code class="java keyword">new</code> <code class="java plain">GLRenderer(context);</code></div><div class="line number18 index17 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">setRenderer(mRenderer);</code></div><div class="line number19 index18 alt2">&nbsp;</div><div class="line number20 index19 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java comments">// Render the view only when there is a change in the drawing data</code></div><div class="line number21 index20 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">setRenderMode(GLSurfaceView.RENDERMODE_CONTINUOUSLY);</code></div><div class="line number22 index21 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">}</code></div><div class="line number23 index22 alt2">&nbsp;</div><div class="line number24 index23 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java color1">@Override</code></div><div class="line number25 index24 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">public</code> <code class="java keyword">void</code> <code class="java plain">onPause() {</code></div><div class="line number26 index25 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java comments">// TODO Auto-generated method stub</code></div><div class="line number27 index26 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">super</code><code class="java plain">.onPause();</code></div><div class="line number28 index27 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">mRenderer.onPause();</code></div><div class="line number29 index28 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">}</code></div><div class="line number30 index29 alt1">&nbsp;</div><div class="line number31 index30 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java color1">@Override</code></div><div class="line number32 index31 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">public</code> <code class="java keyword">void</code> <code class="java plain">onResume() {</code></div><div class="line number33 index32 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java comments">// TODO Auto-generated method stub</code></div><div class="line number34 index33 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">super</code><code class="java plain">.onResume();</code></div><div class="line number35 index34 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">mRenderer.onResume();</code></div><div class="line number36 index35 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">}</code></div><div class="line number37 index36 alt2">&nbsp;</div><div class="line number38 index37 alt1"><code class="java plain">}</code></div></div></td></tr></tbody></table></div></div>
+<div>&nbsp;</div>
+<p style="text-align: justify;">Our surface view needs a renderer, 
+otherwise it cannot render anything on the surface. The renderer is 
+responsible for updating and rendering your game. We will explain our 
+own renderer further on but for now just declare it. The first thing to 
+do when your surface is being created is to tell OpenGL that we want to 
+use version 2.0 of OpenGL (14). This code just assumes that the Android 
+device can handle OpenGL 2 functionality. You can also add code that 
+checks if it is present. If it is not present you can do your game in 
+OpenGL ES 1.1 if you want. Since the scope of our tutorial is OpenGL 
+2.0, we have not included such a check. Now that we have set our version
+ we have to create our renderer (17). We connect our renderer with 
+OpenGL (18) and then set the rendering mode(21). There are 2 rendering 
+modes:</p>
+<ul>
+<li style="text-align: justify;"><strong>GLSurfaceView.RENDERMODE_CONTINUOUSLY</strong>, which basically means that the render loop is being done over and over, no matter what.</li>
+<li style="text-align: justify;"><strong>GLSurfaceView.RENDERMODE_WHENDIRTY</strong>, which means that the render function is only called when something has changed.</li>
+</ul>
+<p style="text-align: justify;">The first option is to our opinion the 
+only true option for games as there is almost always something dynamic 
+happening on screen, think of some kind of animation or something that 
+needs to be updated every frame per second. The other option is more 
+likely to be used in applications for rendering information that is only
+ updated when some parameter has been changed.</p>
+<p>We also pass our onPause and onResume function to our renderer because there is where the actual magic is happening.</p>
+<div>&nbsp;</div>
+<h2>Our Renderer</h2>
+<p>We have used a renderer in our surface that does not yet exist at this moment so we have to create it.</p>
+<div>&nbsp;</div>
+<div><div id="highlighter_993431" class="syntaxhighlighter  java"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div><div class="line number9 index8 alt2">9</div><div class="line number10 index9 alt1">10</div><div class="line number11 index10 alt2">11</div><div class="line number12 index11 alt1">12</div><div class="line number13 index12 alt2">13</div><div class="line number14 index13 alt1">14</div><div class="line number15 index14 alt2">15</div><div class="line number16 index15 alt1">16</div><div class="line number17 index16 alt2">17</div><div class="line number18 index17 alt1">18</div><div class="line number19 index18 alt2">19</div><div class="line number20 index19 alt1">20</div><div class="line number21 index20 alt2">21</div><div class="line number22 index21 alt1">22</div><div class="line number23 index22 alt2">23</div><div class="line number24 index23 alt1">24</div><div class="line number25 index24 alt2">25</div><div class="line number26 index25 alt1">26</div><div class="line number27 index26 alt2">27</div><div class="line number28 index27 alt1">28</div><div class="line number29 index28 alt2">29</div><div class="line number30 index29 alt1">30</div><div class="line number31 index30 alt2">31</div><div class="line number32 index31 alt1">32</div><div class="line number33 index32 alt2">33</div><div class="line number34 index33 alt1">34</div><div class="line number35 index34 alt2">35</div><div class="line number36 index35 alt1">36</div><div class="line number37 index36 alt2">37</div><div class="line number38 index37 alt1">38</div><div class="line number39 index38 alt2">39</div><div class="line number40 index39 alt1">40</div><div class="line number41 index40 alt2">41</div><div class="line number42 index41 alt1">42</div><div class="line number43 index42 alt2">43</div><div class="line number44 index43 alt1">44</div><div class="line number45 index44 alt2">45</div><div class="line number46 index45 alt1">46</div><div class="line number47 index46 alt2">47</div><div class="line number48 index47 alt1">48</div><div class="line number49 index48 alt2">49</div><div class="line number50 index49 alt1">50</div><div class="line number51 index50 alt2">51</div><div class="line number52 index51 alt1">52</div><div class="line number53 index52 alt2">53</div><div class="line number54 index53 alt1">54</div><div class="line number55 index54 alt2">55</div><div class="line number56 index55 alt1">56</div><div class="line number57 index56 alt2">57</div><div class="line number58 index57 alt1">58</div><div class="line number59 index58 alt2">59</div><div class="line number60 index59 alt1">60</div><div class="line number61 index60 alt2">61</div><div class="line number62 index61 alt1">62</div><div class="line number63 index62 alt2">63</div><div class="line number64 index63 alt1">64</div><div class="line number65 index64 alt2">65</div><div class="line number66 index65 alt1">66</div><div class="line number67 index66 alt2">67</div><div class="line number68 index67 alt1">68</div><div class="line number69 index68 alt2">69</div><div class="line number70 index69 alt1">70</div><div class="line number71 index70 alt2">71</div><div class="line number72 index71 alt1">72</div><div class="line number73 index72 alt2">73</div><div class="line number74 index73 alt1">74</div><div class="line number75 index74 alt2">75</div><div class="line number76 index75 alt1">76</div><div class="line number77 index76 alt2">77</div><div class="line number78 index77 alt1">78</div><div class="line number79 index78 alt2">79</div><div class="line number80 index79 alt1">80</div><div class="line number81 index80 alt2">81</div><div class="line number82 index81 alt1">82</div><div class="line number83 index82 alt2">83</div><div class="line number84 index83 alt1">84</div><div class="line number85 index84 alt2">85</div><div class="line number86 index85 alt1">86</div><div class="line number87 index86 alt2">87</div><div class="line number88 index87 alt1">88</div><div class="line number89 index88 alt2">89</div><div class="line number90 index89 alt1">90</div><div class="line number91 index90 alt2">91</div><div class="line number92 index91 alt1">92</div><div class="line number93 index92 alt2">93</div><div class="line number94 index93 alt1">94</div><div class="line number95 index94 alt2">95</div><div class="line number96 index95 alt1">96</div><div class="line number97 index96 alt2">97</div><div class="line number98 index97 alt1">98</div><div class="line number99 index98 alt2">99</div><div class="line number100 index99 alt1">100</div><div class="line number101 index100 alt2">101</div><div class="line number102 index101 alt1">102</div><div class="line number103 index102 alt2">103</div><div class="line number104 index103 alt1">104</div><div class="line number105 index104 alt2">105</div><div class="line number106 index105 alt1">106</div><div class="line number107 index106 alt2">107</div><div class="line number108 index107 alt1">108</div><div class="line number109 index108 alt2">109</div><div class="line number110 index109 alt1">110</div><div class="line number111 index110 alt2">111</div><div class="line number112 index111 alt1">112</div><div class="line number113 index112 alt2">113</div><div class="line number114 index113 alt1">114</div><div class="line number115 index114 alt2">115</div><div class="line number116 index115 alt1">116</div><div class="line number117 index116 alt2">117</div><div class="line number118 index117 alt1">118</div><div class="line number119 index118 alt2">119</div><div class="line number120 index119 alt1">120</div><div class="line number121 index120 alt2">121</div><div class="line number122 index121 alt1">122</div><div class="line number123 index122 alt2">123</div><div class="line number124 index123 alt1">124</div><div class="line number125 index124 alt2">125</div><div class="line number126 index125 alt1">126</div><div class="line number127 index126 alt2">127</div><div class="line number128 index127 alt1">128</div><div class="line number129 index128 alt2">129</div><div class="line number130 index129 alt1">130</div><div class="line number131 index130 alt2">131</div><div class="line number132 index131 alt1">132</div><div class="line number133 index132 alt2">133</div><div class="line number134 index133 alt1">134</div><div class="line number135 index134 alt2">135</div><div class="line number136 index135 alt1">136</div><div class="line number137 index136 alt2">137</div><div class="line number138 index137 alt1">138</div><div class="line number139 index138 alt2">139</div><div class="line number140 index139 alt1">140</div><div class="line number141 index140 alt2">141</div><div class="line number142 index141 alt1">142</div><div class="line number143 index142 alt2">143</div><div class="line number144 index143 alt1">144</div><div class="line number145 index144 alt2">145</div><div class="line number146 index145 alt1">146</div><div class="line number147 index146 alt2">147</div><div class="line number148 index147 alt1">148</div><div class="line number149 index148 alt2">149</div><div class="line number150 index149 alt1">150</div><div class="line number151 index150 alt2">151</div><div class="line number152 index151 alt1">152</div><div class="line number153 index152 alt2">153</div><div class="line number154 index153 alt1">154</div><div class="line number155 index154 alt2">155</div><div class="line number156 index155 alt1">156</div><div class="line number157 index156 alt2">157</div><div class="line number158 index157 alt1">158</div><div class="line number159 index158 alt2">159</div><div class="line number160 index159 alt1">160</div><div class="line number161 index160 alt2">161</div><div class="line number162 index161 alt1">162</div><div class="line number163 index162 alt2">163</div><div class="line number164 index163 alt1">164</div><div class="line number165 index164 alt2">165</div><div class="line number166 index165 alt1">166</div><div class="line number167 index166 alt2">167</div><div class="line number168 index167 alt1">168</div><div class="line number169 index168 alt2">169</div><div class="line number170 index169 alt1">170</div><div class="line number171 index170 alt2">171</div><div class="line number172 index171 alt1">172</div><div class="line number173 index172 alt2">173</div><div class="line number174 index173 alt1">174</div><div class="line number175 index174 alt2">175</div><div class="line number176 index175 alt1">176</div><div class="line number177 index176 alt2">177</div><div class="line number178 index177 alt1">178</div><div class="line number179 index178 alt2">179</div><div class="line number180 index179 alt1">180</div><div class="line number181 index180 alt2">181</div><div class="line number182 index181 alt1">182</div><div class="line number183 index182 alt2">183</div><div class="line number184 index183 alt1">184</div><div class="line number185 index184 alt2">185</div><div class="line number186 index185 alt1">186</div><div class="line number187 index186 alt2">187</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="java keyword">package</code> <code class="java plain">ri.blog.opengl001;</code></div><div class="line number2 index1 alt1">&nbsp;</div><div class="line number3 index2 alt2"><code class="java keyword">import</code> <code class="java plain">java.nio.ByteBuffer;</code></div><div class="line number4 index3 alt1"><code class="java keyword">import</code> <code class="java plain">java.nio.ByteOrder;</code></div><div class="line number5 index4 alt2"><code class="java keyword">import</code> <code class="java plain">java.nio.FloatBuffer;</code></div><div class="line number6 index5 alt1"><code class="java keyword">import</code> <code class="java plain">java.nio.ShortBuffer;</code></div><div class="line number7 index6 alt2">&nbsp;</div><div class="line number8 index7 alt1"><code class="java keyword">import</code> <code class="java plain">javax.microedition.khronos.egl.EGLConfig;</code></div><div class="line number9 index8 alt2"><code class="java keyword">import</code> <code class="java plain">javax.microedition.khronos.opengles.GL10;</code></div><div class="line number10 index9 alt1">&nbsp;</div><div class="line number11 index10 alt2"><code class="java keyword">import</code> <code class="java plain">android.content.Context;</code></div><div class="line number12 index11 alt1"><code class="java keyword">import</code> <code class="java plain">android.opengl.GLES20;</code></div><div class="line number13 index12 alt2"><code class="java keyword">import</code> <code class="java plain">android.opengl.GLSurfaceView.Renderer;</code></div><div class="line number14 index13 alt1"><code class="java keyword">import</code> <code class="java plain">android.opengl.Matrix;</code></div><div class="line number15 index14 alt2">&nbsp;</div><div class="line number16 index15 alt1"><code class="java keyword">public</code> <code class="java keyword">class</code> <code class="java plain">GLRenderer </code><code class="java keyword">implements</code> <code class="java plain">Renderer {</code></div><div class="line number17 index16 alt2">&nbsp;</div><div class="line number18 index17 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java comments">// Our matrices</code></div><div class="line number19 index18 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">private</code> <code class="java keyword">final</code> <code class="java keyword">float</code><code class="java plain">[] mtrxProjection = </code><code class="java keyword">new</code> <code class="java keyword">float</code><code class="java plain">[</code><code class="java value">16</code><code class="java plain">];</code></div><div class="line number20 index19 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">private</code> <code class="java keyword">final</code> <code class="java keyword">float</code><code class="java plain">[] mtrxView = </code><code class="java keyword">new</code> <code class="java keyword">float</code><code class="java plain">[</code><code class="java value">16</code><code class="java plain">];</code></div><div class="line number21 index20 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">private</code> <code class="java keyword">final</code> <code class="java keyword">float</code><code class="java plain">[] mtrxProjectionAndView = </code><code class="java keyword">new</code> <code class="java keyword">float</code><code class="java plain">[</code><code class="java value">16</code><code class="java plain">];</code></div><div class="line number22 index21 alt1">&nbsp;</div><div class="line number23 index22 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java comments">// Geometric variables</code></div><div class="line number24 index23 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">public</code> <code class="java keyword">static</code> <code class="java keyword">float</code> <code class="java plain">vertices[];</code></div><div class="line number25 index24 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">public</code> <code class="java keyword">static</code> <code class="java keyword">short</code> <code class="java plain">indices[];</code></div><div class="line number26 index25 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">public</code> <code class="java plain">FloatBuffer vertexBuffer;</code></div><div class="line number27 index26 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">public</code> <code class="java plain">ShortBuffer drawListBuffer;</code></div><div class="line number28 index27 alt1">&nbsp;</div><div class="line number29 index28 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java comments">// Our screenresolution</code></div><div class="line number30 index29 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">float</code>&nbsp;&nbsp; <code class="java plain">mScreenWidth = </code><code class="java value">1280</code><code class="java plain">;</code></div><div class="line number31 index30 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">float</code>&nbsp;&nbsp; <code class="java plain">mScreenHeight = </code><code class="java value">768</code><code class="java plain">;</code></div><div class="line number32 index31 alt1">&nbsp;</div><div class="line number33 index32 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java comments">// Misc</code></div><div class="line number34 index33 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">Context mContext;</code></div><div class="line number35 index34 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">long</code> <code class="java plain">mLastTime;</code></div><div class="line number36 index35 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">int</code> <code class="java plain">mProgram;</code></div><div class="line number37 index36 alt2">&nbsp;</div><div class="line number38 index37 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">public</code> <code class="java plain">GLRenderer(Context c)</code></div><div class="line number39 index38 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">{</code></div><div class="line number40 index39 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">mContext = c;</code></div><div class="line number41 index40 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">mLastTime = System.currentTimeMillis() + </code><code class="java value">100</code><code class="java plain">;</code></div><div class="line number42 index41 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">}</code></div><div class="line number43 index42 alt2">&nbsp;</div><div class="line number44 index43 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">public</code> <code class="java keyword">void</code> <code class="java plain">onPause()</code></div><div class="line number45 index44 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">{</code></div><div class="line number46 index45 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java comments">/* Do stuff to pause the renderer */</code></div><div class="line number47 index46 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">}</code></div><div class="line number48 index47 alt1">&nbsp;</div><div class="line number49 index48 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">public</code> <code class="java keyword">void</code> <code class="java plain">onResume()</code></div><div class="line number50 index49 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">{</code></div><div class="line number51 index50 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java comments">/* Do stuff to resume the renderer */</code></div><div class="line number52 index51 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">mLastTime = System.currentTimeMillis();</code></div><div class="line number53 index52 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">}</code></div><div class="line number54 index53 alt1">&nbsp;</div><div class="line number55 index54 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java color1">@Override</code></div><div class="line number56 index55 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">public</code> <code class="java keyword">void</code> <code class="java plain">onDrawFrame(GL10 unused) {</code></div><div class="line number57 index56 alt2">&nbsp;</div><div class="line number58 index57 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java comments">// Get the current time</code></div><div class="line number59 index58 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">long</code> <code class="java plain">now = System.currentTimeMillis();</code></div><div class="line number60 index59 alt1">&nbsp;</div><div class="line number61 index60 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java comments">// We should make sure we are valid and sane</code></div><div class="line number62 index61 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">if</code> <code class="java plain">(mLastTime &gt; now) </code><code class="java keyword">return</code><code class="java plain">;</code></div><div class="line number63 index62 alt2">&nbsp;</div><div class="line number64 index63 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java comments">// Get the amount of time the last frame took.</code></div><div class="line number65 index64 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">long</code> <code class="java plain">elapsed = now - mLastTime;</code></div><div class="line number66 index65 alt1">&nbsp;</div><div class="line number67 index66 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java comments">// Update our example</code></div><div class="line number68 index67 alt1">&nbsp;</div><div class="line number69 index68 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java comments">// Render our example</code></div><div class="line number70 index69 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">Render(mtrxProjectionAndView);</code></div><div class="line number71 index70 alt2">&nbsp;</div><div class="line number72 index71 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java comments">// Save the current time to see how long it took &lt;img src="<a href="http://androidblog.reindustries.com/wp-includes/images/smilies/icon_smile.gif">http://androidblog.reindustries.com/wp-includes/images/smilies/icon_smile.gif</a>" alt=":)" class="wp-smiley"&gt; .</code></div><div class="line number73 index72 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">mLastTime = now;</code></div><div class="line number74 index73 alt1">&nbsp;</div><div class="line number75 index74 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">}</code></div><div class="line number76 index75 alt1">&nbsp;</div><div class="line number77 index76 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">private</code> <code class="java keyword">void</code> <code class="java plain">Render(</code><code class="java keyword">float</code><code class="java plain">[] m) {</code></div><div class="line number78 index77 alt1">&nbsp;</div><div class="line number79 index78 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java comments">// clear Screen and Depth Buffer, we have set the clear color as black.</code></div><div class="line number80 index79 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT | GLES20.GL_DEPTH_BUFFER_BIT);</code></div><div class="line number81 index80 alt2">&nbsp;</div><div class="line number82 index81 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java comments">// get handle to vertex shader's vPosition member</code></div><div class="line number83 index82 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">int</code> <code class="java plain">mPositionHandle = GLES20.glGetAttribLocation(riGraphicTools.sp_SolidColor, </code><code class="java string">"vPosition"</code><code class="java plain">);</code></div><div class="line number84 index83 alt1">&nbsp;</div><div class="line number85 index84 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java comments">// Enable generic vertex attribute array</code></div><div class="line number86 index85 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">GLES20.glEnableVertexAttribArray(mPositionHandle);</code></div><div class="line number87 index86 alt2">&nbsp;</div><div class="line number88 index87 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java comments">// Prepare the triangle coordinate data</code></div><div class="line number89 index88 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">GLES20.glVertexAttribPointer(mPositionHandle, </code><code class="java value">3</code><code class="java plain">,</code></div><div class="line number90 index89 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">GLES20.GL_FLOAT, </code><code class="java keyword">false</code><code class="java plain">,</code></div><div class="line number91 index90 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java value">0</code><code class="java plain">, vertexBuffer);</code></div><div class="line number92 index91 alt1">&nbsp;</div><div class="line number93 index92 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java comments">// Get handle to shape's transformation matrix</code></div><div class="line number94 index93 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">int</code> <code class="java plain">mtrxhandle = GLES20.glGetUniformLocation(riGraphicTools.sp_SolidColor, </code><code class="java string">"uMVPMatrix"</code><code class="java plain">);</code></div><div class="line number95 index94 alt2">&nbsp;</div><div class="line number96 index95 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java comments">// Apply the projection and view transformation</code></div><div class="line number97 index96 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">GLES20.glUniformMatrix4fv(mtrxhandle, </code><code class="java value">1</code><code class="java plain">, </code><code class="java keyword">false</code><code class="java plain">, m, </code><code class="java value">0</code><code class="java plain">);</code></div><div class="line number98 index97 alt1">&nbsp;</div><div class="line number99 index98 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java comments">// Draw the triangle</code></div><div class="line number100 index99 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">GLES20.glDrawElements(GLES20.GL_TRIANGLES, indices.length,</code></div><div class="line number101 index100 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">GLES20.GL_UNSIGNED_SHORT, drawListBuffer);</code></div><div class="line number102 index101 alt1">&nbsp;</div><div class="line number103 index102 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java comments">// Disable vertex array</code></div><div class="line number104 index103 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">GLES20.glDisableVertexAttribArray(mPositionHandle);</code></div><div class="line number105 index104 alt2">&nbsp;</div><div class="line number106 index105 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">}</code></div><div class="line number107 index106 alt2">&nbsp;</div><div class="line number108 index107 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java color1">@Override</code></div><div class="line number109 index108 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">public</code> <code class="java keyword">void</code> <code class="java plain">onSurfaceChanged(GL10 gl, </code><code class="java keyword">int</code> <code class="java plain">width, </code><code class="java keyword">int</code> <code class="java plain">height) {</code></div><div class="line number110 index109 alt1">&nbsp;</div><div class="line number111 index110 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java comments">// We need to know the current width and height.</code></div><div class="line number112 index111 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">mScreenWidth = width;</code></div><div class="line number113 index112 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">mScreenHeight = height;</code></div><div class="line number114 index113 alt1">&nbsp;</div><div class="line number115 index114 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java comments">// Redo the Viewport, making it fullscreen.</code></div><div class="line number116 index115 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">GLES20.glViewport(</code><code class="java value">0</code><code class="java plain">, </code><code class="java value">0</code><code class="java plain">, (</code><code class="java keyword">int</code><code class="java plain">)mScreenWidth, (</code><code class="java keyword">int</code><code class="java plain">)mScreenHeight);</code></div><div class="line number117 index116 alt2">&nbsp;</div><div class="line number118 index117 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java comments">// Clear our matrices</code></div><div class="line number119 index118 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">for</code><code class="java plain">(</code><code class="java keyword">int</code> <code class="java plain">i=</code><code class="java value">0</code><code class="java plain">;i&lt;</code><code class="java value">16</code><code class="java plain">;i++)</code></div><div class="line number120 index119 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">{</code></div><div class="line number121 index120 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">mtrxProjection[i] = </code><code class="java value">0</code><code class="java plain">.0f;</code></div><div class="line number122 index121 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">mtrxView[i] = </code><code class="java value">0</code><code class="java plain">.0f;</code></div><div class="line number123 index122 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">mtrxProjectionAndView[i] = </code><code class="java value">0</code><code class="java plain">.0f;</code></div><div class="line number124 index123 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">}</code></div><div class="line number125 index124 alt2">&nbsp;</div><div class="line number126 index125 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java comments">// Setup our screen width and height for normal sprite translation.</code></div><div class="line number127 index126 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">Matrix.orthoM(mtrxProjection, </code><code class="java value">0</code><code class="java plain">, 0f, mScreenWidth, </code><code class="java value">0</code><code class="java plain">.0f, mScreenHeight, </code><code class="java value">0</code><code class="java plain">, </code><code class="java value">50</code><code class="java plain">);</code></div><div class="line number128 index127 alt1">&nbsp;</div><div class="line number129 index128 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java comments">// Set the camera position (View matrix)</code></div><div class="line number130 index129 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">Matrix.setLookAtM(mtrxView, </code><code class="java value">0</code><code class="java plain">, 0f, 0f, 1f, 0f, 0f, 0f, 0f, </code><code class="java value">1</code><code class="java plain">.0f, </code><code class="java value">0</code><code class="java plain">.0f);</code></div><div class="line number131 index130 alt2">&nbsp;</div><div class="line number132 index131 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java comments">// Calculate the projection and view transformation</code></div><div class="line number133 index132 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">Matrix.multiplyMM(mtrxProjectionAndView, </code><code class="java value">0</code><code class="java plain">, mtrxProjection, </code><code class="java value">0</code><code class="java plain">, mtrxView, </code><code class="java value">0</code><code class="java plain">);</code></div><div class="line number134 index133 alt1">&nbsp;</div><div class="line number135 index134 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">}</code></div><div class="line number136 index135 alt1">&nbsp;</div><div class="line number137 index136 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java color1">@Override</code></div><div class="line number138 index137 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">public</code> <code class="java keyword">void</code> <code class="java plain">onSurfaceCreated(GL10 gl, EGLConfig config) {</code></div><div class="line number139 index138 alt2">&nbsp;</div><div class="line number140 index139 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java comments">// Create the triangle</code></div><div class="line number141 index140 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">SetupTriangle();</code></div><div class="line number142 index141 alt1">&nbsp;</div><div class="line number143 index142 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java comments">// Set the clear color to black</code></div><div class="line number144 index143 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">GLES20.glClearColor(</code><code class="java value">0</code><code class="java plain">.0f, </code><code class="java value">0</code><code class="java plain">.0f, </code><code class="java value">0</code><code class="java plain">.0f, </code><code class="java value">1</code><code class="java plain">);</code></div><div class="line number145 index144 alt2">&nbsp;</div><div class="line number146 index145 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java comments">// Create the shaders</code></div><div class="line number147 index146 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">int</code> <code class="java plain">vertexShader = riGraphicTools.loadShader(GLES20.GL_VERTEX_SHADER, riGraphicTools.vs_SolidColor);</code></div><div class="line number148 index147 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">int</code> <code class="java plain">fragmentShader = riGraphicTools.loadShader(GLES20.GL_FRAGMENT_SHADER, riGraphicTools.fs_SolidColor);</code></div><div class="line number149 index148 alt2">&nbsp;</div><div class="line number150 index149 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">riGraphicTools.sp_SolidColor
+ = 
+GLES20.glCreateProgram();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ </code><code class="java comments">// create empty OpenGL ES Program</code></div><div class="line number151 index150 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">GLES20.glAttachShader(riGraphicTools.sp_SolidColor, vertexShader);&nbsp;&nbsp; </code><code class="java comments">// add the vertex shader to program</code></div><div class="line number152 index151 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">GLES20.glAttachShader(riGraphicTools.sp_SolidColor, fragmentShader); </code><code class="java comments">// add the fragment shader to program</code></div><div class="line number153 index152 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">GLES20.glLinkProgram(riGraphicTools.sp_SolidColor);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ </code><code class="java comments">// creates OpenGL ES program executables</code></div><div class="line number154 index153 alt1">&nbsp;</div><div class="line number155 index154 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java comments">// Set our shader programm</code></div><div class="line number156 index155 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">GLES20.glUseProgram(riGraphicTools.sp_SolidColor);</code></div><div class="line number157 index156 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">}</code></div><div class="line number158 index157 alt1">&nbsp;</div><div class="line number159 index158 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">public</code> <code class="java keyword">void</code> <code class="java plain">SetupTriangle()</code></div><div class="line number160 index159 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">{</code></div><div class="line number161 index160 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java comments">// We have create the vertices of our view.</code></div><div class="line number162 index161 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">vertices = </code><code class="java keyword">new</code> <code class="java keyword">float</code><code class="java plain">[]</code></div><div class="line number163 index162 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">{</code><code class="java value">10</code><code class="java plain">.0f, 200f, </code><code class="java value">0</code><code class="java plain">.0f,</code></div><div class="line number164 index163 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java value">10</code><code class="java plain">.0f, 100f, </code><code class="java value">0</code><code class="java plain">.0f,</code></div><div class="line number165 index164 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">100f, 100f, </code><code class="java value">0</code><code class="java plain">.0f,</code></div><div class="line number166 index165 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">};</code></div><div class="line number167 index166 alt2">&nbsp;</div><div class="line number168 index167 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">indices = </code><code class="java keyword">new</code> <code class="java keyword">short</code><code class="java plain">[] {</code><code class="java value">0</code><code class="java plain">, </code><code class="java value">1</code><code class="java plain">, </code><code class="java value">2</code><code class="java plain">}; </code><code class="java comments">// loop in the android official tutorial opengles why different order.</code></div><div class="line number169 index168 alt2">&nbsp;</div><div class="line number170 index169 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java comments">// The vertex buffer.</code></div><div class="line number171 index170 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">ByteBuffer bb = ByteBuffer.allocateDirect(vertices.length * </code><code class="java value">4</code><code class="java plain">);</code></div><div class="line number172 index171 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">bb.order(ByteOrder.nativeOrder());</code></div><div class="line number173 index172 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">vertexBuffer = bb.asFloatBuffer();</code></div><div class="line number174 index173 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">vertexBuffer.put(vertices);</code></div><div class="line number175 index174 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">vertexBuffer.position(</code><code class="java value">0</code><code class="java plain">);</code></div><div class="line number176 index175 alt1">&nbsp;</div><div class="line number177 index176 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java comments">// initialize byte buffer for the draw list</code></div><div class="line number178 index177 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">ByteBuffer dlb = ByteBuffer.allocateDirect(indices.length * </code><code class="java value">2</code><code class="java plain">);</code></div><div class="line number179 index178 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">dlb.order(ByteOrder.nativeOrder());</code></div><div class="line number180 index179 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">drawListBuffer = dlb.asShortBuffer();</code></div><div class="line number181 index180 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">drawListBuffer.put(indices);</code></div><div class="line number182 index181 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">drawListBuffer.position(</code><code class="java value">0</code><code class="java plain">);</code></div><div class="line number183 index182 alt2">&nbsp;</div><div class="line number184 index183 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">}</code></div><div class="line number185 index184 alt2"><code class="java plain">}</code></div><div class="line number186 index185 alt1">&nbsp;</div><div class="line number187 index186 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;</code>&nbsp;</div></div></td></tr></tbody></table></div></div>
+<div>&nbsp;</div>
+<p style="text-align: justify;">A OpenGL surface renderer has to have at
+ least 3 functions called onSurfaceCreated, onSurfaceChanged and 
+onFrameDraw. Those function are basically everything you need to use 
+OpenGL for rendering. We need to know when our surface is created so we 
+can setup all kinds of stuff. We also have to change stuff when our 
+surface has changed due to rotation of your phone or tablet and thus the
+ changes in resolution. The renderer renders frames when needed. Since 
+we set our renderer to GLSurfaceView.RENDERMODE_CONTINUOUSLY it keeps on
+ rendering frames until infinity. Our job is to fill up the onFrameDraw 
+function in such a way that our gaming world is updated and that it will
+ be drawn.</p>
+<p style="text-align: justify;">Let’s look a bit closer to our <strong>onSurfaceCreated</strong>
+ function. In this function we are going to setup our OpenGL as well as 
+our gaming environment. The first thing we do is create our triangle 
+(141). We create our array of vertices (162) and our array of indices 
+(168). Triangles are always rendered in a certain order,<a title="Create shapes in OpenGL ES 2.0" href="http://developer.android.com/training/graphics/opengl/shapes.html"> look up the Google Android Development page to learn more about this</a>.
+ OpenGL ES 2 works best with ByteBuffers so we create them with the 
+array we just made (171 &amp; 178). We have now created the geometric 
+data of the triangle. We continue with defining the clear color (144). 
+Everytime OpenGL clears our screen for a new drawsession, it clears our 
+screen to that specified color, black in our case. Since we are using 
+OpenGL ES 2.0 we need to create shaders (147, 148). Nothing will be 
+drawn without shaders in Open GL ES 2. We need a shader program to 
+attach our shaders so that OpenGL can use our shaders for rendering 
+(150). The last step is to set our newly created program as the current 
+active one.&nbsp;We are now set for our next step: rendering our 
+triangle!</p>
+<p style="text-align: justify;">We also have to take into account what 
+happens when our Surface has changed. This happens when for example you 
+rotate your phone and your surface rotates with it. This is where 
+the&nbsp;<strong>onSurfaceChanged&nbsp;</strong>is used for. We have to 
+redo our viewport every time our surface changes (116). Because our 
+viewport changes all our matrices are no longer valid. We have to reset 
+them and fill them again (119-133). Because we want only a 2D setup, we 
+use the&nbsp;orthoM function because we then do not have any need for a 
+perspective view of our scene as we use no depth (127). For more 
+information about the difference <a title="Difference between orthogonal and perspective" href="http://wiki.blender.org/index.php/Doc:2.4/Manual/3D_interaction/Navigating/3D_View">here is a great link</a>.
+ We set our camera view(130) and we multiply it with our projection 
+matrix (133) which results in our matrix we use for all model-space to 
+screen-space translations.</p>
+<p style="text-align: justify;">The last function of our renderer is the function <strong>onDrawFrame&nbsp;</strong>that
+ is called over and over again. The first lines (59-65) of code just 
+calculate a value we need to know how long the previous frame took. We 
+need this value in our game to do animations and the sort but for this 
+tutorial it is not so important. For this tutorial we only use a render 
+function (70) because we do not update any game logic, however if you 
+do, you should update all game logic before you call the render 
+function.</p>
+<p style="text-align: justify;">Our <strong>Render</strong> function 
+starts by clearing our screen (80). Now our screen is empty we should 
+render our triangle to it. As we have previously stated, nothing gets 
+rendered without shaders. The next section will give a bit more 
+information you need about shaders but for now assume we have simple 
+shaders that just get a location and renders a color on that. To pass 
+our vertex data to our shader we need the location of the position 
+variable of our vertex shader (83). We then enable (86) that for passing
+ our own vertexdata (89). We pass the location first followed by how 
+many attributes a vertex has, in our case 3. We also tell it what our 
+data is precisely, floats. If you create big multipurpose vertex data 
+array, you should use the stride as the pitch to get vertex data for the
+ next index. We do not use that so we just fill in a 0. The last thing 
+we pass is the buffer to our vertex data. We do the same process with 
+our project/camera matrix so that the vertices can be translated 
+correctly from model space to screen space (94-97). &nbsp;Now our 
+shaders have all the information they need, we can finally render our 
+primitive (100)!</p>
+<div>&nbsp;</div>
+<h2>Shaders</h2>
+<p style="text-align: justify;">The last components of our tutorial are the shaders. Let’s take a look at the <strong>riGraphicTools</strong> class.</p>
+<div>&nbsp;</div>
+<div><div id="highlighter_394000" class="syntaxhighlighter  java"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div><div class="line number9 index8 alt2">9</div><div class="line number10 index9 alt1">10</div><div class="line number11 index10 alt2">11</div><div class="line number12 index11 alt1">12</div><div class="line number13 index12 alt2">13</div><div class="line number14 index13 alt1">14</div><div class="line number15 index14 alt2">15</div><div class="line number16 index15 alt1">16</div><div class="line number17 index16 alt2">17</div><div class="line number18 index17 alt1">18</div><div class="line number19 index18 alt2">19</div><div class="line number20 index19 alt1">20</div><div class="line number21 index20 alt2">21</div><div class="line number22 index21 alt1">22</div><div class="line number23 index22 alt2">23</div><div class="line number24 index23 alt1">24</div><div class="line number25 index24 alt2">25</div><div class="line number26 index25 alt1">26</div><div class="line number27 index26 alt2">27</div><div class="line number28 index27 alt1">28</div><div class="line number29 index28 alt2">29</div><div class="line number30 index29 alt1">30</div><div class="line number31 index30 alt2">31</div><div class="line number32 index31 alt1">32</div><div class="line number33 index32 alt2">33</div><div class="line number34 index33 alt1">34</div><div class="line number35 index34 alt2">35</div><div class="line number36 index35 alt1">36</div><div class="line number37 index36 alt2">37</div><div class="line number38 index37 alt1">38</div><div class="line number39 index38 alt2">39</div><div class="line number40 index39 alt1">40</div><div class="line number41 index40 alt2">41</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="java keyword">package</code> <code class="java plain">ri.blog.opengl001;</code></div><div class="line number2 index1 alt1">&nbsp;</div><div class="line number3 index2 alt2"><code class="java keyword">import</code> <code class="java plain">android.opengl.GLES20;</code></div><div class="line number4 index3 alt1">&nbsp;</div><div class="line number5 index4 alt2"><code class="java keyword">public</code> <code class="java keyword">class</code> <code class="java plain">riGraphicTools {</code></div><div class="line number6 index5 alt1">&nbsp;</div><div class="line number7 index6 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java comments">// Program variables</code></div><div class="line number8 index7 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">public</code> <code class="java keyword">static</code> <code class="java keyword">int</code> <code class="java plain">sp_SolidColor;</code></div><div class="line number9 index8 alt2">&nbsp;</div><div class="line number10 index9 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java comments">/* SHADER Solid</code></div><div class="line number11 index10 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java comments">*</code></div><div class="line number12 index11 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java comments">* This shader is for rendering a colored primitive.</code></div><div class="line number13 index12 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java comments">*</code></div><div class="line number14 index13 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java comments">*/</code></div><div class="line number15 index14 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">public</code> <code class="java keyword">static</code> <code class="java keyword">final</code> <code class="java plain">String vs_SolidColor =</code></div><div class="line number16 index15 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java string">"uniform&nbsp;&nbsp;&nbsp; mat4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uMVPMatrix;"</code> <code class="java plain">+</code></div><div class="line number17 index16 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java string">"attribute&nbsp; vec4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; vPosition;"</code> <code class="java plain">+</code></div><div class="line number18 index17 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java string">"void main() {"</code> <code class="java plain">+</code></div><div class="line number19 index18 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java string">"&nbsp; gl_Position = uMVPMatrix * vPosition;"</code> <code class="java plain">+</code></div><div class="line number20 index19 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java string">"}"</code><code class="java plain">;</code></div><div class="line number21 index20 alt2">&nbsp;</div><div class="line number22 index21 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">public</code> <code class="java keyword">static</code> <code class="java keyword">final</code> <code class="java plain">String fs_SolidColor =</code></div><div class="line number23 index22 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java string">"precision mediump float;"</code> <code class="java plain">+</code></div><div class="line number24 index23 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java string">"void main() {"</code> <code class="java plain">+</code></div><div class="line number25 index24 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java string">"&nbsp; gl_FragColor = vec4(0.5,0,0,1);"</code> <code class="java plain">+</code></div><div class="line number26 index25 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java string">"}"</code><code class="java plain">;</code></div><div class="line number27 index26 alt2">&nbsp;</div><div class="line number28 index27 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">public</code> <code class="java keyword">static</code> <code class="java keyword">int</code> <code class="java plain">loadShader(</code><code class="java keyword">int</code> <code class="java plain">type, String shaderCode){</code></div><div class="line number29 index28 alt2">&nbsp;</div><div class="line number30 index29 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java comments">// create a vertex shader type (GLES20.GL_VERTEX_SHADER)</code></div><div class="line number31 index30 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java comments">// or a fragment shader type (GLES20.GL_FRAGMENT_SHADER)</code></div><div class="line number32 index31 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">int</code> <code class="java plain">shader = GLES20.glCreateShader(type);</code></div><div class="line number33 index32 alt2">&nbsp;</div><div class="line number34 index33 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java comments">// add the source code to the shader and compile it</code></div><div class="line number35 index34 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">GLES20.glShaderSource(shader, shaderCode);</code></div><div class="line number36 index35 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">GLES20.glCompileShader(shader);</code></div><div class="line number37 index36 alt2">&nbsp;</div><div class="line number38 index37 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java comments">// return the shader</code></div><div class="line number39 index38 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">return</code> <code class="java plain">shader;</code></div><div class="line number40 index39 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">}</code></div><div class="line number41 index40 alt2"><code class="java plain">}</code></div></div></td></tr></tbody></table></div></div>
+<div>&nbsp;</div>
+<p style="text-align: justify;">OpenGL ES 2.0 uses two kinds of shaders;
+ Vertex shaders and Fragment shaders. Vertex shaders basicly control 
+what is done to vertices and how they should be rendered. The fragment 
+shader controls what is done to the fragments created by the 
+rasterization process. Which in our case are the pixels of our triangle.
+ So what do we do exactly? Our vertex shaders does not more than 
+translate our modelspace coordinate to screen coordinate. After this the
+ rasterization process creates a pixelbuffer holding the triangle 
+translated to screen space. The fragment shader then applies a color to 
+each fragment, darkish red in our case. The resulting triangle will be 
+darkish red.</p>
+<p>You have now created a 2D Open GL ES 2.0 app. Our next parts of this tutorial will be online asap!</p>
+<div>&nbsp;</div>
+<p><strong>The sourcecode for this tutorial</strong>: <a href="http://androidblog.reindustries.com/wp-content/uploads/2013/12/opengl001.zip">Source Tutorial 1</a></p>
+<div>&nbsp;</div>
+<h3>Tutorial index</h3>
+<ul>
+<li>A real Open GL ES 2.0 2D tutorial part 1:&nbsp;<a title="part 1 of this tutorial" href="http://androidblog.reindustries.com/a-real-open-gl-es-2-0-2d-tutorial-part-1/">Rendering a triangle</a></li>
+<li>A real Open GL ES 2.0 2D tutorial part 2:&nbsp;<a title="Part 2 of this tutorial" href="http://androidblog.reindustries.com/a-real-opengl-es-2-0-2d-tutorial-part-2/">Rendering an Images</a></li>
+<li>A real Open GL ES 2.0 2D tutorial part 3: <a href="http://androidblog.reindustries.com/a-real-opengl-es-2-0-2d-tutorial-part-3/" title="Part 3 of this tutorial">Handling Input</a></li>
+<li>A real Open GL ES 2.0 2D tutorial part 4: <a href="http://androidblog.reindustries.com/a-real-opengl-es-2-0-2d-tutorial-part-4-transforming/" title="Part 4 of this tutorial">Transforming Images</a></li>
+<li>A real Open GL ES 2.0 2D tutorial part 5: <a href="http://androidblog.reindustries.com/a-real-opengl-es-2-0-2d-tutorial-part-5-knowing-the-opengl-texture-system/" title="Understanding the OpenGL texture system">Knowing the OpenGL texture system</a></li>
+<li>A real Open GL ES 2.0 2D tutorial part 6: <a href="http://androidblog.reindustries.com/a-real-opengl-es-2-0-2d-tutorial-part-6-screens-and-dimensions/" title="Understanding the OpenGL texture system">Screens and dimensions</a></li>
+<li>A real Open GL ES 2.0 2D tutorial part 7: <a href="http://androidblog.reindustries.com/a-real-opengl-es-2-0-2d-tutorial-part-7-texture-atlas/" title="Understanding the OpenGL texture system">Texture Atlas</a></li>
+<li>A real Open GL ES 2.0 2D tutorial part 8: <a href="http://androidblog.reindustries.com/a-real-opengl-es-2-0-2d-tutorial-part-8-rendering-text/" title="Rendering text with Open GL ES 2.0">Rendering Text</a></li>
+</ul>
+<div>&nbsp;</div>
+					</div><!-- .entry-content -->
+
+	
+	<footer class="entry-meta">
+		
+							<span class="cat-links">
+				Posted in <a href="http://androidblog.reindustries.com/category/android/" title="View all posts in Android" rel="category tag">Android</a>, <a href="http://androidblog.reindustries.com/category/open_gl_es_2/" title="View all posts in Open GL ES 2" rel="category tag">Open GL ES 2</a>, <a href="http://androidblog.reindustries.com/category/shader/" title="View all posts in Shader" rel="category tag">Shader</a>			</span>
+				<span class="sep"> | </span>
+			
+			
+		
+						<span class="comments-link"><a href="http://androidblog.reindustries.com/a-real-open-gl-es-2-0-2d-tutorial-part-1/#comments" title="Comment on A real Open GL ES 2.0 2D tutorial part 1">10 Comments</a></span>
+				<span class="sep">  </span>
+			
+		
+	</footer>
+	<!-- #entry-meta -->
+
+</article><!-- #post-31 -->
+							<div class="more-content">
+								<div class="row-fluid">
+									<div class="span6 previous-post">
+																			</div>
+									<div class="span6 next-post">
+										<a href="http://androidblog.reindustries.com/localisation-talk-to-the-world-free/" rel="next">Localisation, Talk to the World (free)!</a> »									</div>
+								</div>
+							</div>
+
+							
+
+<!-- *******************************************************************************************************************-->
+<!-- Comments Evolved for Wordpress v1.5.6 ( http://wordpress.org/plugins/gplus-comments/ ) -->
+<!-- *******************************************************************************************************************-->
+
+<!-- comment-tabs -->
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+  window.comment_tab_width = $('#comment-tabs').innerWidth();
+});
+</script>
+<div class="ui-tabs ui-widget ui-widget-content ui-corner-all" id="comment-tabs">
+<a name="comments"></a>
+    <ul role="tablist" class="controls inline clearfix ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
+    <li aria-selected="true" aria-labelledby="ui-id-1" aria-controls="gplus-tab" tabindex="0" role="tab" class="active ui-state-default ui-corner-top ui-tabs-active ui-state-active" id="gplus-control"><a id="ui-id-1" tabindex="-1" role="presentation" class="ui-tabs-anchor" href="#gplus-tab"><img id="gplus-icon" src="Android%20Programming%20Blog%20_%20A%20real%20Open%20GL%20ES%202.0%202D%20tutorial%20part%201_files/gplus.png"><span id="gplus-label"></span></a></li>
+<li aria-selected="false" aria-labelledby="ui-id-2" aria-controls="facebook-tab" tabindex="-1" role="tab" class="ui-state-default ui-corner-top" id="facebook-control"><a id="ui-id-2" tabindex="-1" role="presentation" class="ui-tabs-anchor" href="#facebook-tab"><img id="facebook-icon" src="Android%20Programming%20Blog%20_%20A%20real%20Open%20GL%20ES%202.0%202D%20tutorial%20part%201_files/facebook.png"><span id="facebook-label"></span></a></li>
+<li aria-selected="false" aria-labelledby="ui-id-3" aria-controls="wordpress-tab" tabindex="-1" role="tab" class="ui-state-default ui-corner-top" id="wordpress-control"><a id="ui-id-3" tabindex="-1" role="presentation" class="ui-tabs-anchor" href="#wordpress-tab"><img id="wordpress-icon" src="Android%20Programming%20Blog%20_%20A%20real%20Open%20GL%20ES%202.0%202D%20tutorial%20part%201_files/wordpress.png"><span id="wordpress-label"></span></a></li>
+  </ul>
+  <!-- gplus-tab -->
+<div aria-hidden="false" aria-expanded="true" role="tabpanel" aria-labelledby="ui-id-1" id="gplus-tab" class="embed-container content-tab clearfix ui-tabs-panel ui-widget-content ui-corner-bottom"><div id="___comments_0" style="text-indent: 0px; margin: 0px; padding: 0px; background: transparent none repeat scroll 0% 0%; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 539px; height: 2759px;"><iframe title="Comment on this" data-gapiattached="true" src="Android%20Programming%20Blog%20_%20A%20real%20Open%20GL%20ES%202.0%202D%20tutorial%20part%201_files/comments.htm" name="I0_1435605344329" id="I0_1435605344329" vspace="0" tabindex="0" style="position: static; top: 0px; width: 539px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 2759px;" scrolling="no" marginwidth="0" marginheight="0" hspace="0" frameborder="0" width="100%"></iframe></div></div>
+<!-- //gplus-tab -->
+<!-- facebook-tab -->
+<div aria-hidden="true" aria-expanded="false" style="display: none;" role="tabpanel" aria-labelledby="ui-id-2" id="facebook-tab" class="embed-container content-tab clearfix ui-tabs-panel ui-widget-content ui-corner-bottom">
+<div class=" fb_reset" id="fb-root"><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div><iframe src="Android%20Programming%20Blog%20_%20A%20real%20Open%20GL%20ES%202.0%202D%20tutorial%20part%201_files/1ldYU13brY_.htm" style="border: medium none;" tabindex="-1" title="Facebook Cross Domain Communication Frame" aria-hidden="true" id="fb_xdm_frame_http" scrolling="no" allowfullscreen="true" allowtransparency="true" name="fb_xdm_frame_http" frameborder="0"></iframe><iframe src="Android%20Programming%20Blog%20_%20A%20real%20Open%20GL%20ES%202.0%202D%20tutorial%20part%201_files/1ldYU13brY__002.htm" style="border: medium none;" tabindex="-1" title="Facebook Cross Domain Communication Frame" aria-hidden="true" id="fb_xdm_frame_https" scrolling="no" allowfullscreen="true" allowtransparency="true" name="fb_xdm_frame_https" frameborder="0"></iframe></div></div><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div></div></div></div>
+<div id="fb-comments"><div fb-xfbml-state="rendered" class="fb-comments fb_iframe_widget" data-width="538" data-href="http://androidblog.reindustries.com/a-real-open-gl-es-2-0-2d-tutorial-part-1/" data-num-posts="20" data-colorscheme="light" data-mobile="auto"><span style="height: 0px; width: 538px;"><iframe src="Android%20Programming%20Blog%20_%20A%20real%20Open%20GL%20ES%202.0%202D%20tutorial%20part%201_files/comments_002.htm" class="fb_ltr" title="Facebook Social Plugin" style="border: medium none; overflow: hidden; height: 0px; width: 538px;" scrolling="no" name="f3b1eb5cd0b3302" id="f2f22de10b3785"></iframe></span></div></div>
+<script type="text/javascript">
+  jQuery(document).ready(function($)
+  {
+    $('#fb-comments').html('<div class="fb-comments" 
+data-width="'+window.comment_tab_width+'" 
+data-href="http://androidblog.reindustries.com/a-real-open-gl-es-2-0-2d-tutorial-part-1/"
+ data-num-posts="20" data-colorscheme="light" 
+data-mobile="auto"></div>');
+  });
+</script>
+<script async="" type="text/javascript" src="Android%20Programming%20Blog%20_%20A%20real%20Open%20GL%20ES%202.0%202D%20tutorial%20part%201_files/all.js">FB.init();</script>
+<noscript>Please enable JavaScript to view the <a href="https://www.facebook.com/">comments powered by Facebook.</a></noscript>
+
+
+</div>
+<!-- //facebook-tab -->
+<!-- wordpress-tab -->
+<div aria-hidden="true" aria-expanded="false" style="display: none;" role="tabpanel" aria-labelledby="ui-id-3" id="wordpress-tab" class="embed-container content-tab clearfix ui-tabs-panel ui-widget-content ui-corner-bottom">
+
+
+<div id="comments" class="comments-area">
+
+	
+			<h2 class="comments-title">
+			10 thoughts on <span>“A real Open GL ES 2.0 2D tutorial part 1”</span>		</h2>
+
+		
+		<ol class="commentlist">
+								<li class="comment even thread-even depth-1" id="li-comment-16">
+					<article id="comment-16" class="comment hreview">
+						<footer>
+							<div class="comment-author reviewer vcard">
+								<img alt="" src="Android%20Programming%20Blog%20_%20A%20real%20Open%20GL%20ES%202.0%202D%20tutorial%20part%201_files/12f4052f74fbec5dd68c4b5b7db445d3.png" class="avatar avatar-40 photo" height="40" width="40">								<cite class="fn">Ofer</cite> <span class="says">says:</span>							</div>
+							<!-- .comment-author .vcard -->
+							
+							<div class="comment-meta commentmetadata">
+								<a href="http://androidblog.reindustries.com/a-real-open-gl-es-2-0-2d-tutorial-part-1/#comment-16" class="dtreviewed">
+									<time pubdate="" datetime="2013-12-14T19:16:29+00:00">
+										December 14, 2013 at 19:16									</time>
+								</a>
+															</div>
+							<!-- .comment-meta .commentmetadata -->
+						</footer>
+
+						<div class="comment-content"><p>Thanks for the source code <img src="Android%20Programming%20Blog%20_%20A%20real%20Open%20GL%20ES%202.0%202D%20tutorial%20part%201_files/icon_smile.gif" alt=":)" class="wp-smiley"> </p>
+</div>
+
+						<div class="reply">
+							<a class="comment-reply-link" href="http://androidblog.reindustries.com/a-real-open-gl-es-2-0-2d-tutorial-part-1/?replytocom=16#respond" onclick='return addComment.moveForm("comment-16", "16", "respond", "31")'>Reply</a>						</div>
+						<!-- .reply -->
+					</article><!-- #comment-## -->
+
+				</li><!-- #comment-## -->
+					<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-17">
+					<article id="comment-17" class="comment hreview">
+						<footer>
+							<div class="comment-author reviewer vcard">
+								<img alt="" src="Android%20Programming%20Blog%20_%20A%20real%20Open%20GL%20ES%202.0%202D%20tutorial%20part%201_files/12f4052f74fbec5dd68c4b5b7db445d3.png" class="avatar avatar-40 photo" height="40" width="40">								<cite class="fn">Ofer</cite> <span class="says">says:</span>							</div>
+							<!-- .comment-author .vcard -->
+							
+							<div class="comment-meta commentmetadata">
+								<a href="http://androidblog.reindustries.com/a-real-open-gl-es-2-0-2d-tutorial-part-1/#comment-17" class="dtreviewed">
+									<time pubdate="" datetime="2013-12-14T19:24:15+00:00">
+										December 14, 2013 at 19:24									</time>
+								</a>
+															</div>
+							<!-- .comment-meta .commentmetadata -->
+						</footer>
+
+						<div class="comment-content"><p>can you explain what should be in the R.id.gamelayout ?<br>
+should i create such a layout? what it should contain? can you upload it? or the full source code?</p>
+</div>
+
+						<div class="reply">
+							<a class="comment-reply-link" href="http://androidblog.reindustries.com/a-real-open-gl-es-2-0-2d-tutorial-part-1/?replytocom=17#respond" onclick='return addComment.moveForm("comment-17", "17", "respond", "31")'>Reply</a>						</div>
+						<!-- .reply -->
+					</article><!-- #comment-## -->
+
+				<ul class="children">
+					<li class="comment byuser comment-author-reinier bypostauthor even depth-2" id="li-comment-18">
+					<article id="comment-18" class="comment hreview">
+						<footer>
+							<div class="comment-author reviewer vcard">
+								<img alt="" src="Android%20Programming%20Blog%20_%20A%20real%20Open%20GL%20ES%202.0%202D%20tutorial%20part%201_files/0c63828b9d285dad0ef331086a5503a3.png" class="avatar avatar-40 photo" height="40" width="40">								<cite class="fn">Reinier</cite> <span class="says">says:</span>							</div>
+							<!-- .comment-author .vcard -->
+							
+							<div class="comment-meta commentmetadata">
+								<a href="http://androidblog.reindustries.com/a-real-open-gl-es-2-0-2d-tutorial-part-1/#comment-18" class="dtreviewed">
+									<time pubdate="" datetime="2013-12-14T20:13:17+00:00">
+										December 14, 2013 at 20:13									</time>
+								</a>
+															</div>
+							<!-- .comment-meta .commentmetadata -->
+						</footer>
+
+						<div class="comment-content"><p>It is just a simple layout containing only a relativelayout. I have added the XML source for it.</p>
+</div>
+
+						<div class="reply">
+							<a class="comment-reply-link" href="http://androidblog.reindustries.com/a-real-open-gl-es-2-0-2d-tutorial-part-1/?replytocom=18#respond" onclick='return addComment.moveForm("comment-18", "18", "respond", "31")'>Reply</a>						</div>
+						<!-- .reply -->
+					</article><!-- #comment-## -->
+
+				<ul class="children">
+					<li class="comment odd alt depth-3" id="li-comment-19">
+					<article id="comment-19" class="comment hreview">
+						<footer>
+							<div class="comment-author reviewer vcard">
+								<img alt="" src="Android%20Programming%20Blog%20_%20A%20real%20Open%20GL%20ES%202.0%202D%20tutorial%20part%201_files/12f4052f74fbec5dd68c4b5b7db445d3.png" class="avatar avatar-40 photo" height="40" width="40">								<cite class="fn">Ofer</cite> <span class="says">says:</span>							</div>
+							<!-- .comment-author .vcard -->
+							
+							<div class="comment-meta commentmetadata">
+								<a href="http://androidblog.reindustries.com/a-real-open-gl-es-2-0-2d-tutorial-part-1/#comment-19" class="dtreviewed">
+									<time pubdate="" datetime="2013-12-14T20:59:52+00:00">
+										December 14, 2013 at 20:59									</time>
+								</a>
+															</div>
+							<!-- .comment-meta .commentmetadata -->
+						</footer>
+
+						<div class="comment-content"><p>Thanks…<br>
+the issue was the id name for it <img src="Android%20Programming%20Blog%20_%20A%20real%20Open%20GL%20ES%202.0%202D%20tutorial%20part%201_files/icon_smile.gif" alt=":)" class="wp-smiley"> </p>
+</div>
+
+						<div class="reply">
+							<a class="comment-reply-link" href="http://androidblog.reindustries.com/a-real-open-gl-es-2-0-2d-tutorial-part-1/?replytocom=19#respond" onclick='return addComment.moveForm("comment-19", "19", "respond", "31")'>Reply</a>						</div>
+						<!-- .reply -->
+					</article><!-- #comment-## -->
+
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+					<li class="comment even thread-even depth-1" id="li-comment-28">
+					<article id="comment-28" class="comment hreview">
+						<footer>
+							<div class="comment-author reviewer vcard">
+								<img alt="" src="Android%20Programming%20Blog%20_%20A%20real%20Open%20GL%20ES%202.0%202D%20tutorial%20part%201_files/75d0f974e6e941ec6e0f2f22f69291ab.png" class="avatar avatar-40 photo" height="40" width="40">								<cite class="fn">Lovecookie</cite> <span class="says">says:</span>							</div>
+							<!-- .comment-author .vcard -->
+							
+							<div class="comment-meta commentmetadata">
+								<a href="http://androidblog.reindustries.com/a-real-open-gl-es-2-0-2d-tutorial-part-1/#comment-28" class="dtreviewed">
+									<time pubdate="" datetime="2014-02-05T03:27:04+00:00">
+										February 5, 2014 at 03:27									</time>
+								</a>
+															</div>
+							<!-- .comment-meta .commentmetadata -->
+						</footer>
+
+						<div class="comment-content"><p>thanks for your kind and source code..<br>
+I was a big help</p>
+</div>
+
+						<div class="reply">
+							<a class="comment-reply-link" href="http://androidblog.reindustries.com/a-real-open-gl-es-2-0-2d-tutorial-part-1/?replytocom=28#respond" onclick='return addComment.moveForm("comment-28", "28", "respond", "31")'>Reply</a>						</div>
+						<!-- .reply -->
+					</article><!-- #comment-## -->
+
+				</li><!-- #comment-## -->
+					<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-59">
+					<article id="comment-59" class="comment hreview">
+						<footer>
+							<div class="comment-author reviewer vcard">
+								<img alt="" src="Android%20Programming%20Blog%20_%20A%20real%20Open%20GL%20ES%202.0%202D%20tutorial%20part%201_files/f08738002057f24d190c298a0e269552.jpg" class="avatar avatar-40 photo" height="40" width="40">								<cite class="fn">Blipi</cite> <span class="says">says:</span>							</div>
+							<!-- .comment-author .vcard -->
+							
+							<div class="comment-meta commentmetadata">
+								<a href="http://androidblog.reindustries.com/a-real-open-gl-es-2-0-2d-tutorial-part-1/#comment-59" class="dtreviewed">
+									<time pubdate="" datetime="2014-03-18T00:07:12+00:00">
+										March 18, 2014 at 00:07									</time>
+								</a>
+															</div>
+							<!-- .comment-meta .commentmetadata -->
+						</footer>
+
+						<div class="comment-content"><p>I am new to OpenGL and I may have 
+done things wrong, but so far this won’t properly render unless I change
+ the vertex shader code to:<br>
+vPosition*uMVPMatrix;<br>
+Instead of<br>
+uMVPMatrix * vPosition;</p>
+<p>I am using it to render an hexagon (counterclock wise) and using GL_TRIANGLE_FAN, but I don’t think that makes any difference.</p>
+<p>Any advice? Thank you!</p>
+</div>
+
+						<div class="reply">
+							<a class="comment-reply-link" href="http://androidblog.reindustries.com/a-real-open-gl-es-2-0-2d-tutorial-part-1/?replytocom=59#respond" onclick='return addComment.moveForm("comment-59", "59", "respond", "31")'>Reply</a>						</div>
+						<!-- .reply -->
+					</article><!-- #comment-## -->
+
+				<ul class="children">
+					<li class="comment byuser comment-author-reinier bypostauthor even depth-2" id="li-comment-60">
+					<article id="comment-60" class="comment hreview">
+						<footer>
+							<div class="comment-author reviewer vcard">
+								<img alt="" src="Android%20Programming%20Blog%20_%20A%20real%20Open%20GL%20ES%202.0%202D%20tutorial%20part%201_files/0c63828b9d285dad0ef331086a5503a3.png" class="avatar avatar-40 photo" height="40" width="40">								<cite class="fn">Reinier</cite> <span class="says">says:</span>							</div>
+							<!-- .comment-author .vcard -->
+							
+							<div class="comment-meta commentmetadata">
+								<a href="http://androidblog.reindustries.com/a-real-open-gl-es-2-0-2d-tutorial-part-1/#comment-60" class="dtreviewed">
+									<time pubdate="" datetime="2014-03-18T09:48:05+00:00">
+										March 18, 2014 at 09:48									</time>
+								</a>
+															</div>
+							<!-- .comment-meta .commentmetadata -->
+						</footer>
+
+						<div class="comment-content"><p>Don’t know for sure of course 
+since I do not have your code, but have you tried rendering your hexagon
+ clockwise? They are probably now being culled (removed) because they do
+ not face the camera (change can change the location of the camera as 
+well). If you continue with all our other tutorials, changing the 
+shadercode may introduce all sorts of problems.</p>
+</div>
+
+						<div class="reply">
+							<a class="comment-reply-link" href="http://androidblog.reindustries.com/a-real-open-gl-es-2-0-2d-tutorial-part-1/?replytocom=60#respond" onclick='return addComment.moveForm("comment-60", "60", "respond", "31")'>Reply</a>						</div>
+						<!-- .reply -->
+					</article><!-- #comment-## -->
+
+				<ul class="children">
+					<li class="comment odd alt depth-3" id="li-comment-89">
+					<article id="comment-89" class="comment hreview">
+						<footer>
+							<div class="comment-author reviewer vcard">
+								<img alt="" src="Android%20Programming%20Blog%20_%20A%20real%20Open%20GL%20ES%202.0%202D%20tutorial%20part%201_files/1a7c478480c2dcab691d2c7719fda0fc.png" class="avatar avatar-40 photo" height="40" width="40">								<cite class="fn">anon</cite> <span class="says">says:</span>							</div>
+							<!-- .comment-author .vcard -->
+							
+							<div class="comment-meta commentmetadata">
+								<a href="http://androidblog.reindustries.com/a-real-open-gl-es-2-0-2d-tutorial-part-1/#comment-89" class="dtreviewed">
+									<time pubdate="" datetime="2014-05-28T09:42:03+00:00">
+										May 28, 2014 at 09:42									</time>
+								</a>
+															</div>
+							<!-- .comment-meta .commentmetadata -->
+						</footer>
+
+						<div class="comment-content"><p>That’s probably it (assuming you 
+enabled culling which i do not recall seeing in the tutorial), and the 
+reason that swapping the order of the multiplicaiton ‘fixes’ the issue 
+is that matrix multiplicaiton is not transitive (a*b != b*a) and could 
+flip the hexagon making it visible again.</p>
+</div>
+
+						<div class="reply">
+							<a class="comment-reply-link" href="http://androidblog.reindustries.com/a-real-open-gl-es-2-0-2d-tutorial-part-1/?replytocom=89#respond" onclick='return addComment.moveForm("comment-89", "89", "respond", "31")'>Reply</a>						</div>
+						<!-- .reply -->
+					</article><!-- #comment-## -->
+
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+				<li class="post pingback">
+				<p>Pingback: <a href="http://www.appance.com/10-essential-android-game-development-tutorials/" rel="external nofollow" class="url">The Essential Android Game Development Tutorials</a></p>
+				</li><!-- #comment-## -->
+				<li class="post pingback">
+				<p>Pingback: <a href="http://avengames.wordpress.com/2014/07/12/starting-android-development/" rel="external nofollow" class="url">Starting Android Development! | Aven Games</a></p>
+				</li><!-- #comment-## -->
+		</ol>
+
+		
+	
+	
+									<div id="respond" class="comment-respond">
+				<h3 id="reply-title" class="comment-reply-title">Leave a comment <small><a rel="nofollow" id="cancel-comment-reply-link" href="http://androidblog.reindustries.com/a-real-open-gl-es-2-0-2d-tutorial-part-1/#respond" style="display:none;">Cancel reply</a></small></h3>
+									<form action="http://androidblog.reindustries.com/wp-comments-post.php" method="post" id="commentform" class="comment-form">
+																			<p class="comment-notes">Your email address will not be published. Required fields are marked <span class="required">*</span></p>							<p class="comment-form-author"><label for="author">Name <span class="required">*</span></label> <input id="author" name="author" size="30" aria-required="true" type="text"></p>
+<p class="comment-form-email"><label for="email">Email <span class="required">*</span></label> <input id="email" name="email" size="30" aria-required="true" type="text"></p>
+<p class="comment-form-url"><label for="url">Website</label> <input id="url" name="url" size="30" type="text"></p>
+												<p class="comment-form-comment"><label for="comment">Comment</label> <textarea id="comment" name="comment" cols="45" rows="8" aria-required="true"></textarea></p>						<p class="form-allowed-tags">You may use these <abbr title="HyperText Markup Language">HTML</abbr> tags and attributes:  <code>&lt;a
+ href="" title=""&gt; &lt;abbr title=""&gt; &lt;acronym title=""&gt; 
+&lt;b&gt; &lt;blockquote cite=""&gt; &lt;cite&gt; &lt;code&gt; &lt;del 
+datetime=""&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=""&gt; &lt;strike&gt; 
+&lt;strong&gt; </code></p>						<p class="form-submit">
+							<input name="submit" id="submit" value="Post Comment" type="submit">
+							<input name="comment_post_ID" value="31" id="comment_post_ID" type="hidden">
+<input name="comment_parent" id="comment_parent" value="0" type="hidden">
+						</p>
+						
+	<p class="comment-form-ant-spm" style="clear: both; display: none;">
+		<strong>Current ye@r</strong> <span class="required">*</span>
+		<input name="ant-spm-a" id="ant-spm-a" value="2015" type="hidden">
+		<input name="ant-spm-q" id="ant-spm-q" size="30" value="2015" type="text">
+	</p>
+	
+	<p class="comment-form-ant-spm-2" style="display:none;">
+		<strong>Leave this field empty</strong>
+		<input name="ant-spm-e-email-url" id="ant-spm-e-email-url" size="30" type="text">
+	</p>
+						</form>
+							</div><!-- #respond -->
+						
+</div><!-- #comments .comments-area --></div>
+<!-- //wordpress-tab -->
+</div>
+<!-- //comment-tabs -->
+
+						
+						
+					</div>
+					<!-- #content -->
+
+					
+<div id="secondary" class="widget-area span3">
+
+	
+	<div id="sidebar">
+		<aside id="archives-3" class="widget-container widget_archive"><h3 class="widget-title">Archive</h3>		<ul>
+			<li><a href="http://androidblog.reindustries.com/2014/06/" title="June 2014">June 2014</a></li>
+	<li><a href="http://androidblog.reindustries.com/2014/05/" title="May 2014">May 2014</a></li>
+	<li><a href="http://androidblog.reindustries.com/2014/03/" title="March 2014">March 2014</a></li>
+	<li><a href="http://androidblog.reindustries.com/2014/02/" title="February 2014">February 2014</a></li>
+	<li><a href="http://androidblog.reindustries.com/2014/01/" title="January 2014">January 2014</a></li>
+	<li><a href="http://androidblog.reindustries.com/2013/12/" title="December 2013">December 2013</a></li>
+	<li><a href="http://androidblog.reindustries.com/2013/10/" title="October 2013">October 2013</a></li>
+	<li><a href="http://androidblog.reindustries.com/2013/09/" title="September 2013">September 2013</a></li>
+	<li><a href="http://androidblog.reindustries.com/2013/08/" title="August 2013">August 2013</a></li>
+		</ul>
+</aside><aside id="text-2" class="widget-container widget_text"><h3 class="widget-title">ReIndustries Games</h3>			<div class="textwidget">Here is a list of our released games:<br><br>
+
+<a href="https://play.google.com/store/apps/details?id=ri.Games.CastlesUnderSiege.free" target="_new"><strong>Castles Under Siege</strong><br>
+<img src="Android%20Programming%20Blog%20_%20A%20real%20Open%20GL%20ES%202.0%202D%20tutorial%20part%201_files/cus_promo2.png"></a><br><br>
+
+<a href="https://play.google.com/store/apps/details?id=ri.Games.Boxy3" target="_new"><strong>Boxy 3</strong><br>
+<img src="Android%20Programming%20Blog%20_%20A%20real%20Open%20GL%20ES%202.0%202D%20tutorial%20part%201_files/gameslistboxy3.jpg"></a><br><br>
+
+<a href="https://play.google.com/store/apps/details?id=ri.Games.BlockJumping" target="_new"><strong>Block Hopping</strong><br>
+<img src="Android%20Programming%20Blog%20_%20A%20real%20Open%20GL%20ES%202.0%202D%20tutorial%20part%201_files/bh_promo2.jpg"></a><br><br></div>
+		</aside><aside id="tag_cloud-2" class="widget-container widget_tag_cloud"><h3 class="widget-title">Tags and Keywords</h3><div class="tagcloud"><a href="http://androidblog.reindustries.com/tag/actionbar/" class="tag-link-24" title="1 topic" style="font-size: 8pt;">Actionbar</a>
+<a href="http://androidblog.reindustries.com/tag/active-activity/" class="tag-link-14" title="1 topic" style="font-size: 8pt;">Active Activity</a>
+<a href="http://androidblog.reindustries.com/tag/activity/" class="tag-link-13" title="1 topic" style="font-size: 8pt;">Activity</a>
+<a href="http://androidblog.reindustries.com/tag/android/" class="tag-link-3" title="6 topics" style="font-size: 22pt;">Android</a>
+<a href="http://androidblog.reindustries.com/tag/animation/" class="tag-link-23" title="1 topic" style="font-size: 8pt;">animation</a>
+<a href="http://androidblog.reindustries.com/tag/aspect-ratio/" class="tag-link-17" title="1 topic" style="font-size: 8pt;">aspect ratio</a>
+<a href="http://androidblog.reindustries.com/tag/colorized-textures/" class="tag-link-15" title="1 topic" style="font-size: 8pt;">colorized textures</a>
+<a href="http://androidblog.reindustries.com/tag/gray-scaling/" class="tag-link-19" title="1 topic" style="font-size: 8pt;">gray scaling</a>
+<a href="http://androidblog.reindustries.com/tag/opengl-es-2-0/" class="tag-link-12" title="6 topics" style="font-size: 22pt;">OpenGL ES 2.0</a>
+<a href="http://androidblog.reindustries.com/tag/opengl-text/" class="tag-link-21" title="1 topic" style="font-size: 8pt;">opengl text</a>
+<a href="http://androidblog.reindustries.com/tag/pixel-density/" class="tag-link-18" title="1 topic" style="font-size: 8pt;">pixel density</a>
+<a href="http://androidblog.reindustries.com/tag/scaling/" class="tag-link-16" title="1 topic" style="font-size: 8pt;">scaling</a>
+<a href="http://androidblog.reindustries.com/tag/shader/" class="tag-link-4" title="2 topics" style="font-size: 12.581818181818pt;">Shader</a>
+<a href="http://androidblog.reindustries.com/tag/shaders/" class="tag-link-20" title="1 topic" style="font-size: 8pt;">shaders</a>
+<a href="http://androidblog.reindustries.com/tag/text-rendering/" class="tag-link-22" title="1 topic" style="font-size: 8pt;">text rendering</a>
+<a href="http://androidblog.reindustries.com/tag/update-animation/" class="tag-link-25" title="1 topic" style="font-size: 8pt;">update animation</a>
+<a href="http://androidblog.reindustries.com/tag/updating/" class="tag-link-26" title="1 topic" style="font-size: 8pt;">Updating</a></div>
+</aside><aside id="text-3" class="widget-container widget_text"><h3 class="widget-title">Follow us</h3>			<div class="textwidget">If
+ you want to know when a new tutorial is being published or if you want 
+to know more about our game and app releases, you can follow us on <a href="https://twitter.com/ReIndustries">Twitter</a> and <a href="https://www.facebook.com/pages/ReIndustries/198858556802011">Facebook</a>.</div>
+		</aside>	</div><div style="text-align: center; width: 100%; height: auto; clear: both;" class="googlepublisherpluginad"><ins style="display: block; margin: 10px auto; background-color: transparent;" data-tag-origin="pso" data-ad-format="auto" data-ad-slot="2071842048" data-ad-client="ca-pub-7396093554829178" class="adsbygoogle"></ins></div>
+	<!-- #sidebar -->
+
+	
+</div><!-- #secondary .widget-area .span3 -->
+				</div><div style="text-align: center; width: 100%; height: auto; clear: both;" class="googlepublisherpluginad"><ins style="display: block; margin: 10px auto; background-color: transparent;" data-tag-origin="pso" data-ad-format="auto" data-ad-slot="1050290444" data-ad-client="ca-pub-7396093554829178" class="adsbygoogle"></ins></div>
+				<!-- #container .row-fluid-->
+
+				
+			</div>
+			<!--container fluid -->
+
+		</div>
+		<!-- container -->
+
+	</div><!-- container full width -->
+
+
+	<div class="container-full-width" id="footer_section">
+		<div class="container">
+			<div class="container-fluid">
+				<div id="footer-widgets" class="row-fluid">
+					<div id="footer-widget-container" class="span12">
+						<div class="row-fluid">
+
+															<aside class="widget-container span3">
+									<h3 class="widget-title">Pages</h3>
+									<ul>
+										<li class="page_item page-item-24"><a href="http://androidblog.reindustries.com/about/">About</a></li>
+<li class="page_item page-item-136"><a href="http://androidblog.reindustries.com/tutorials/">Tutorials</a></li>
+									</ul>
+								</aside>
+
+								<aside class="widget-container span3">
+									<h3 class="widget-title">Archives</h3>
+									<ul>
+											<li><a href="http://androidblog.reindustries.com/2014/06/" title="June 2014">June 2014</a></li>
+	<li><a href="http://androidblog.reindustries.com/2014/05/" title="May 2014">May 2014</a></li>
+	<li><a href="http://androidblog.reindustries.com/2014/03/" title="March 2014">March 2014</a></li>
+	<li><a href="http://androidblog.reindustries.com/2014/02/" title="February 2014">February 2014</a></li>
+	<li><a href="http://androidblog.reindustries.com/2014/01/" title="January 2014">January 2014</a></li>
+	<li><a href="http://androidblog.reindustries.com/2013/12/" title="December 2013">December 2013</a></li>
+	<li><a href="http://androidblog.reindustries.com/2013/10/" title="October 2013">October 2013</a></li>
+	<li><a href="http://androidblog.reindustries.com/2013/09/" title="September 2013">September 2013</a></li>
+	<li><a href="http://androidblog.reindustries.com/2013/08/" title="August 2013">August 2013</a></li>
+									</ul>
+								</aside>
+
+								<aside class="widget-container span3">
+									<h3 class="widget-title">Categories</h3>
+									<ul>
+											<li class="cat-item cat-item-24"><a href="http://androidblog.reindustries.com/category/actionbar/" title="View all posts filed under Actionbar">Actionbar</a> (1)
+</li>
+	<li class="cat-item cat-item-3"><a href="http://androidblog.reindustries.com/category/android/" title="All android related blogs">Android</a> (18)
+</li>
+	<li class="cat-item cat-item-9"><a href="http://androidblog.reindustries.com/category/bugs/" title="View all posts filed under Bugs">Bugs</a> (2)
+</li>
+	<li class="cat-item cat-item-11"><a href="http://androidblog.reindustries.com/category/cheats/" title="View all posts filed under cheats">cheats</a> (1)
+</li>
+	<li class="cat-item cat-item-7"><a href="http://androidblog.reindustries.com/category/emulator/" title="View all posts filed under Emulator">Emulator</a> (1)
+</li>
+	<li class="cat-item cat-item-6"><a href="http://androidblog.reindustries.com/category/game-translation/" title="View all posts filed under game translation">game translation</a> (1)
+</li>
+	<li class="cat-item cat-item-8"><a href="http://androidblog.reindustries.com/category/issues/" title="View all posts filed under issues">issues</a> (3)
+</li>
+	<li class="cat-item cat-item-5"><a href="http://androidblog.reindustries.com/category/localisation/" title="View all posts filed under Localisation">Localisation</a> (1)
+</li>
+	<li class="cat-item cat-item-2"><a href="http://androidblog.reindustries.com/category/open_gl_es_2/" title="All blog entries regarding OpenGL ES 2.0 programming">Open GL ES 2</a> (12)
+</li>
+	<li class="cat-item cat-item-4"><a href="http://androidblog.reindustries.com/category/shader/" title="All blogs related to shaders">Shader</a> (7)
+</li>
+	<li class="cat-item cat-item-10"><a href="http://androidblog.reindustries.com/category/tips/" title="View all posts filed under tips">tips</a> (2)
+</li>
+									</ul>
+								</aside>
+
+								<aside class="widget-container span3">
+									<h3 class="widget-title">WordPress</h3>
+									<ul>
+																				<li><a href="http://androidblog.reindustries.com/wp-login.php">Log in</a></li>
+										<li><a href="http://wordpress.org/" target="_blank" title="Powered by WordPress, state-of-the-art semantic personal publishing platform."> WordPress</a>
+										</li>
+																			</ul>
+								</aside>
+													</div>
+						<!-- .row-fluid -->
+					</div>
+					<!-- #footer-widget-container -->
+				</div>
+				<!-- #footer-widgets .row-fluid  -->
+			</div>
+			<!-- .container-fluid-->
+		</div>
+		<!-- .container -->
+	</div>    <!-- #footer_section -->
+
+	
+
+
+	<div class="container-full-width" id="after_footer">
+		<div class="container">
+			<div class="container-fluid">
+				<footer class="site-footer row-fluid">
+					<div class="span6">
+						<div id="credit">
+															<a href="http://cyberchimps.com/" target="_blank" title="CyberChimps Themes">
+									<img class="cc-credit-logo" src="Android%20Programming%20Blog%20_%20A%20real%20Open%20GL%20ES%202.0%202D%20tutorial%20part%201_files/achimps2x.png" alt="CyberChimps" height="32" width="32">
+									<h4 class="cc-credit-text"><span>Cyber</span>Chimps</h4>
+								</a>
+													</div>
+					</div>
+
+					<!-- Adds the afterfooter copyright area -->
+					<div class="span6">
+												<div id="copyright">
+							© ReIndustries						</div>
+					</div>
+				</footer>
+				<!-- row-fluid -->
+			</div>
+			<!-- .container-fluid-->
+		</div>
+		<!-- .container -->
+	</div>    <!-- #after_footer -->
+
+
+</div><!-- End Sub Body -->
+
+
+<script><!--
+dynamicgoogletags.update();
+//--></script>	<!-- Start of StatCounter Code -->
+	<script type="text/javascript">
+	<!-- 
+		var sc_project=9184147; 
+		var sc_security="594ad3aa"; 
+		var sc_invisible=1;
+	//-->
+	</script>
+	<script type="text/javascript" src="Android%20Programming%20Blog%20_%20A%20real%20Open%20GL%20ES%202.0%202D%20tutorial%20part%201_files/counter_xhtml.js"></script>
+<noscript><div class="statcounter"><a title="web analytics" 
+href="http://statcounter.com/"><img class="statcounter" 
+src="http://c.statcounter.com/9184147/0/594ad3aa/1/" alt="web analytics"
+ /></a></div></noscript>	
+	<!-- End of StatCounter Code -->
+<script type="text/javascript" src="Android%20Programming%20Blog%20_%20A%20real%20Open%20GL%20ES%202.0%202D%20tutorial%20part%201_files/shCore.js"></script>
+<script type="text/javascript" src="Android%20Programming%20Blog%20_%20A%20real%20Open%20GL%20ES%202.0%202D%20tutorial%20part%201_files/shBrushJava.js"></script>
+<script type="text/javascript" src="Android%20Programming%20Blog%20_%20A%20real%20Open%20GL%20ES%202.0%202D%20tutorial%20part%201_files/shBrushXml.js"></script>
+<script type="text/javascript">
+	(function(){
+		var corecss = document.createElement('link');
+		var themecss = document.createElement('link');
+		var corecssurl = 
+"http://androidblog.reindustries.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shCore.css?ver=3.0.9";
+
+		if ( corecss.setAttribute ) {
+				corecss.setAttribute( "rel", "stylesheet" );
+				corecss.setAttribute( "type", "text/css" );
+				corecss.setAttribute( "href", corecssurl );
+		} else {
+				corecss.rel = "stylesheet";
+				corecss.href = corecssurl;
+		}
+		document.getElementsByTagName("head")[0].insertBefore( corecss, 
+document.getElementById("syntaxhighlighteranchor") );
+		var themecssurl = 
+"http://androidblog.reindustries.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shThemeDefault.css?ver=3.0.9";
+
+		if ( themecss.setAttribute ) {
+				themecss.setAttribute( "rel", "stylesheet" );
+				themecss.setAttribute( "type", "text/css" );
+				themecss.setAttribute( "href", themecssurl );
+		} else {
+				themecss.rel = "stylesheet";
+				themecss.href = themecssurl;
+		}
+		
+//document.getElementById("syntaxhighlighteranchor").appendChild(themecss);
+
+		document.getElementsByTagName("head")[0].insertBefore( themecss, 
+document.getElementById("syntaxhighlighteranchor") );
+	})();
+	SyntaxHighlighter.config.strings.expandSource = '+ expand source';
+	SyntaxHighlighter.config.strings.help = '?';
+	SyntaxHighlighter.config.strings.alert = 'SyntaxHighlighter\n\n';
+	SyntaxHighlighter.config.strings.noBrush = 'Can\'t find brush for: ';
+	SyntaxHighlighter.config.strings.brushNotHtmlScript = 'Brush wasn\'t 
+configured for html-script option: ';
+	SyntaxHighlighter.defaults['pad-line-numbers'] = false;
+	SyntaxHighlighter.defaults['toolbar'] = false;
+	SyntaxHighlighter.all();
+</script>
+<link rel="stylesheet" id="comments_evolved_tabs_css-css" href="Android%20Programming%20Blog%20_%20A%20real%20Open%20GL%20ES%202.0%202D%20tutorial%20part%201_files/plugin.css" type="text/css" media="all">
+<script type="text/javascript" src="Android%20Programming%20Blog%20_%20A%20real%20Open%20GL%20ES%202.0%202D%20tutorial%20part%201_files/jquery.js"></script>
+<script type="text/javascript" src="Android%20Programming%20Blog%20_%20A%20real%20Open%20GL%20ES%202.0%202D%20tutorial%20part%201_files/jquery_004.js"></script>
+<script type="text/javascript" src="Android%20Programming%20Blog%20_%20A%20real%20Open%20GL%20ES%202.0%202D%20tutorial%20part%201_files/jquery_005.js"></script>
+<script type="text/javascript" src="Android%20Programming%20Blog%20_%20A%20real%20Open%20GL%20ES%202.0%202D%20tutorial%20part%201_files/bootstrap.js"></script>
+<script type="text/javascript" src="Android%20Programming%20Blog%20_%20A%20real%20Open%20GL%20ES%202.0%202D%20tutorial%20part%201_files/retina-1.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var fsb = {"ajax":"http:\/\/androidblog.reindustries.com\/wp-admin\/admin-ajax.php"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="Android%20Programming%20Blog%20_%20A%20real%20Open%20GL%20ES%202.0%202D%20tutorial%20part%201_files/fsb.js"></script>
+<!-- Comments Evolved plugin -->
+<script>jQuery("#comment-tabs").tabs();</script>
+<!-- //Comments Evolved plugin -->
+
+
+<div style="display: none;" id="lbOverlay"></div><div style="display: none;" id="lbCenter"><div id="lbImage"><div style="position: relative;"><a id="lbPrevLink" href="#"></a><a id="lbNextLink" href="#"></a></div></div></div><div style="display: none;" id="lbBottomContainer"><div id="lbBottom"><a id="lbCloseLink" href="#"></a><div id="lbCaption"></div><div id="lbNumber"></div><div style="clear: both;"></div></div></div><iframe tabindex="-1" style="width: 1px; height: 1px; position: absolute; top: -100px;" src="Android%20Programming%20Blog%20_%20A%20real%20Open%20GL%20ES%202.0%202D%20tutorial%20part%201_files/postmessageRelay.htm" id="oauth2relay905395989" name="oauth2relay905395989"></iframe><div class="vdh-mask vdh-276555232" style="width:516px;height:33px;top:5266px;left:177px;display:none"></div><div class="vdh-mask vdh-276555232" style="width:516px;height:33px;top:5164px;left:177px;display:none"></div></body></html>

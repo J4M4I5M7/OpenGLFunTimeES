@@ -1,0 +1,7 @@
+The proect was supposed to display triangles.
+I made it change the color of the screen with time in case the triangles were
+blending into the background. No such luck.
+
+Source location: Youtube:
+Android/OpenGLES2 Game Development: Lesson 2 - Shapes & Shaders 
+https://www.youtube.com/watch?v=yP1hPFMy-jg

@@ -1,0 +1,3 @@
+ASP == Android Studio Projects.
+Shortened names because file paths were getting too long and
+had some failiure to copy directory errors because file path was too long.

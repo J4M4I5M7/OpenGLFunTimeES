@@ -1,0 +1,10 @@
+
+The book:
+OpenGL ES 2 for Android.
+A Quick-Start Guide.
+By: Kevin Brothaler.
+
+Series: The Pragmatic Programmer.
+Publisher: Pragmatic Bookshelf.
+
+ISBN: 978-1-93778-534-5

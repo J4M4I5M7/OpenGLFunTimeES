@@ -1,0 +1,7 @@
+
+Fail: The original failed android studio project.
+Hack: Copy of the failed project that is being actively hacked on.
+Pass: Where the Hack project will eventually go if we can get it to work
+      correctly. Should be displaying triagles.
+	  
+WebPageHTML: The source HTML in case the link one day does not work.

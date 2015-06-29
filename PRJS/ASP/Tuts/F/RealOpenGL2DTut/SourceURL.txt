@@ -1,0 +1,4 @@
+http://androidblog.reindustries.com/a-real-open-gl-es-2-0-2d-tutorial-part-1/
+
+In the case that one day this link does not work, the source HTML of this
+page has been stored in webPageHTML folder.

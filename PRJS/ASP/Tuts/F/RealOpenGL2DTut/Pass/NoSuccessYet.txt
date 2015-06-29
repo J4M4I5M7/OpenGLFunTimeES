@@ -1,0 +1,3 @@
+Tried hacking project by making a copy of it and putting it in "hack" folder.
+Was able to stop it from crashing. But screen is black and does not display
+any triangles.
