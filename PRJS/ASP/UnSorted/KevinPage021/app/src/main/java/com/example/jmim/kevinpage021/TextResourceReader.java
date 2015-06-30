@@ -57,7 +57,14 @@ public class TextResourceReader
 			("Resource not found:" + resourceID, nfe);
 		}
 
-		return body.toString();
+		String op = body.toString();
 
+		//linux style line endings could be your answer?
+		//http://stackoverflow.com/questions
+		// /3776923/how-can-i-normalize-the-eol-character-in-java
+		op = op.replaceAll("\\r\\n", "\n");
+		op = op.replaceAll("\\r", "\n");
+
+		return op;
 	}//end function.
 }//end class.

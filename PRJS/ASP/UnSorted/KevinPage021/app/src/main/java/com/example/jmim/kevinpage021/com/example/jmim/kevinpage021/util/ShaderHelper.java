@@ -39,8 +39,9 @@ public class ShaderHelper
 	public static int compileVertexShader
 	(String sc)
 	{
-
-		return compileShader(GL_VERTEX_SHADER, sc);
+	    int op = compileShader(GL_VERTEX_SHADER, sc);
+		EU.glCheck();
+		return op;
 	}
 
 	/**
@@ -51,7 +52,9 @@ public class ShaderHelper
 	public static int compileFragmentShader
 	(String fc)
 	{
-		return compileShader(GL_FRAGMENT_SHADER, fc);
+		int op = compileShader(GL_FRAGMENT_SHADER, fc);
+		EU.glCheck();
+		return op;
 	}
 
 	/**
@@ -88,18 +91,32 @@ public class ShaderHelper
 
 		if(LoggerConfig.ON)
 		{
-			Log.v(TAG,"MSG==:" + "\n" + src + "\n" + ":"
-			+ glGetShaderInfoLog(shaderObjectID) );
+			Log.v(TAG,"MSG==:" + "\n" + src + "\n" + ":");
+			String sinfo = glGetShaderInfoLog(shaderObjectID);
+			Log.v(TAG,"ILOG==[" + sinfo + "]");
 		}
 
-		if(compileStatus[0] == 0)
+		if(0==compileStatus[0])
 		{
 			if(LoggerConfig.ON)
 			{
 				Log.w(TAG,"CompilationOfShaderFailed");
+				throw new RuntimeException("CompilationOfShaderFailedBoss");
 			}
 			return 0;
 		}//bad compilation status. 0 == failure.
+
+		if(shaderObjectID <= 0)
+		{
+			if(0==shaderObjectID)
+			{
+				throw new RuntimeException("shaderObjectID==0");
+			}
+			else
+			{
+				throw new RuntimeException("NegativeShaderID==int-overflow");
+			}
+		}
 
 		//return the ID/Handle of the compiled shader:
 		return shaderObjectID;
@@ -116,8 +133,32 @@ public class ShaderHelper
 	 */
 	public static int linkProgram(int hVS, int hFS)
 	{
+		//Error check your input programs:
+		/////////////////////////////////////////
+		String msg = "";
+		boolean hasInputError = false;
+		if(hVS == 0)
+		{
+			hasInputError = true;
+			msg += "[hVS==0]";
+		}
+
+		if(hFS == 0)
+		{
+			hasInputError = true;
+			msg += "[hFS==0]";
+		}
+
+		if(hasInputError)
+		{
+			throw new RuntimeException(msg);
+		}
+		/////////////////////////////////////////
+
+
 		/**hPO == Handle: Program Object. **/
-		final int hPO = glCreateProgram();
+		//final int hPO = glCreateProgram();
+		int hPO = glCreateProgram(); //taking off final.
 
 		if(0 == hPO)
 		{
@@ -125,7 +166,9 @@ public class ShaderHelper
 			{
 				Log.w(TAG,"CouldNotCreateNewProgram");
 			}
-			return 0;
+
+			throw new RuntimeException("C_N_C_N_P");
+
 		}//error!!!!
 
 		//attach vert and frag shader:
@@ -155,8 +198,12 @@ public class ShaderHelper
 			{
 				Log.w(TAG,"LinkingOfProgramFailed");
 			}
-			return 0;
+
+			throw new RuntimeException("L_O_P_F");
+
 		}//rawer...
+
+
 
 		//return the program object handle: PAGE 46:
 		return hPO;

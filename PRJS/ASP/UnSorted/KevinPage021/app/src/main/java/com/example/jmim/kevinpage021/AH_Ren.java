@@ -3,10 +3,12 @@ package com.example.jmim.kevinpage021;
 //import android.opengl.GLSurfaceView;
 
 //Static var imports???
+import static android.opengl.GLES20.GL_ARRAY_BUFFER;
 import static android.opengl.GLES20.GL_COLOR_BUFFER_BIT;
 import static android.opengl.GLES20.GL_FLOAT;
 import static android.opengl.GLES20.GL_POINTS;
 import static android.opengl.GLES20.GL_TRIANGLES;
+import static android.opengl.GLES20.glBindBuffer;
 import static android.opengl.GLES20.glClear;
 import static android.opengl.GLES20.glClearColor;
 import static android.opengl.GLES20.glDrawArrays;
@@ -64,6 +66,8 @@ public class AH_Ren implements Renderer
 	/** constructor. **/
 	public AH_Ren(Context context)
 	{
+
+
 		//set context: Page 39:
 		this.context = context;
 
@@ -110,6 +114,10 @@ public class AH_Ren implements Renderer
 
 		//Endianness on page 29 of Kevin's book.
 
+		//experiment: Try throwing error right here... See if you can
+		//easily detect it:
+		///throw new RuntimeException("TestDebugError::AH_Ren");
+
 	}//end constructor.
 
 
@@ -127,12 +135,60 @@ public class AH_Ren implements Renderer
 		String fragmentShaderSource = TextResourceReader
 		.readTextFileFromResource(context,R.raw.simple_fragment_shader);
 
+		//attempt hard-coded string version of shader and see if you have better luck:
+		String hcVS =
+		"attribute vec4 a_Position;" + "\n"+
+		"void main()" + "\n"+
+		"{" + "\n"+
+			"gl_Position = a_Position;" + "\n"+
+		"}" + "\n";
+
+		String hcFS =
+		"precision mediump float;" +"\n"+
+		"uniform vec4 u_Color;" +"\n"+
+		"void main()" +"\n"+
+		"{" +"\n"+
+		"	gl_FragColor = u_Color;" +"\n"+
+		"}" + "\n";
+
+
+
+
+
+
+
 		//Page 43 of Kevin's Book:
-		int hVS = ShaderHelper.compileVertexShader(vertexShaderSource);
+	    int hVS = ShaderHelper.compileVertexShader(vertexShaderSource);
 		int hFS = ShaderHelper.compileFragmentShader(fragmentShaderSource);
+
+		//HACK: Trying inlined hard-coded shader to see if problem is with
+		//      the code that reads the shader.
+		//int hVS = ShaderHelper.compileVertexShader(hcVS);
+		//int hFS = ShaderHelper.compileFragmentShader(hcFS);
+
+		//see if the compilation of shaders ran into problem:
+		if(0==hVS && 0==hFS)
+		{
+			throw new RuntimeException("VS & FS == 0");
+		}else
+		if(0==hVS)
+		{
+			throw new RuntimeException("VS == 0");
+		}
+		else
+		if(0==hFS)
+		{
+			throw new RuntimeException("FS == 0");
+		}
 
 		//page 46:
 		program = ShaderHelper.linkProgram(hVS,hFS);
+
+		//Throw error if program is == 0:
+		if(0==program)
+		{
+			throw new RuntimeException("WeHaveAProgramProblem");
+		}
 
 		//Page 47:
 		if(LoggerConfig.ON)
@@ -170,6 +226,10 @@ public class AH_Ren implements Renderer
 	public void onDrawFrame(GL10 gl) {
 		glClear(GL_COLOR_BUFFER_BIT);
 
+		//JMIM EDIT:
+		//Just a guess:
+		//vData.position(0); <--This will cause crash.
+
 		//page 51: glDrawArrays will draw TWO(2) triangles
 		//because it has been instructed to read in SIX(6) verticies.
 		glUniform4f(uColorLocation, 1.0f, 1.0f, 1.0f, 1.0f);
@@ -187,7 +247,9 @@ public class AH_Ren implements Renderer
 		glUniform4f(uColorLocation,1.0f, 0.0f, 0.0f, 1.0f);
 		glDrawArrays(GL_POINTS, 9, 1);
 
-
+	//http://stackoverflow.com/questions/4679405/gldrawarrays-problem
+	//JMIM HACK: Attempt to fix:
+	//glBindBuffer(GL_ARRAY_BUFFER,0); //<--Causes crash.
 
 	}
 }//End Class "Ren".
