@@ -52,8 +52,8 @@ public class AH_Act extends Activity
 			//Do this before set renderer:
 			vew.setEGLConfigChooser(8,8,8,8,16,0);
 
-
-			vew.setRenderer(new AH_Ren() );
+			/**This object IS the context. Page 39. **/
+			vew.setRenderer(new AH_Ren(this) );
 			hasRen = true;
 			setContentView(vew);
 		}

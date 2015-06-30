@@ -1,0 +1,26 @@
+https://help.github.com/articles/generating-ssh-keys/
+
+Step 4: Add your SSH key to your account
+
+To configure your GitHub account to use your SSH key:
+
+//Not sure what this means:
+//Like... copy the actual file to my clip board?
+//Or the key name??
+Copy the SSH key to your clipboard. 
+If your key is named id_dsa.pub, 
+id_ecdsa.pub or id_ed25519.pub, 
+then change the filename below from 
+id_rsa.pub to the one that matches your key:
+
+This tells me it is a some type of key name:
+QUOTE:
+Warning: It's important to copy the key exactly 
+without adding newlines or whitespace.
+END QUOTE:
+
+Okay.. Have to open id_whatever.pub in a notepad and copy it and
+then paste it into the SSH keys area of your gitHub.
+
+
+
