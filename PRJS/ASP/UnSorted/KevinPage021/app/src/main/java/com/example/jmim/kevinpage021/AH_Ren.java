@@ -126,6 +126,8 @@ public class AH_Ren implements Renderer
 	{
 		glClearColor(1.0f,0.0f,1.0f,0.0f);
 
+
+
 		//What is the "context" variable on page 38 referring to?
 		//var context:EGLContext
 
